@@ -6,12 +6,12 @@ import Grid from "@material-ui/core/Grid";
 import Basket from "../../components/Basket";
 import VideoChat from "../../components/VideoChat";
 import ProductCatalog from "../../components/ProductCatalog";
-import mockBasketItems from "../../store/mockdata/MockBasketItems.json";
+import mockBasketItems from "../../store/mock/MockBasketItems.json";
 import ProductSearchBox from "../../components/ProductSearchBox";
 import { addBasketItem, removeBasketItem } from "../../utils/basketUtils";
 
 const useStyles = makeStyles((theme) => ({
-  heading: {
+  root: {
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
   },
@@ -39,10 +39,7 @@ export default function CashierPage() {
   const mockRetailer = "Waitrose";
 
   return (
-    <Container maxWidth="xl">
-      <Typography variant="h2" className={classes.heading}>
-        NextGenShop Cashier
-      </Typography>
+    <Container maxWidth="xl" className={classes.root}>
       <Grid container spacing={3}>
         <Grid item md={6}>
           <Typography variant="subtitle1" display="inline" className={classes.mr}>

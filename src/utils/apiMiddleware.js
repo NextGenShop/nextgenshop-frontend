@@ -1,5 +1,6 @@
 import axios from "axios";
-import config from "../../config";
+import config from "../config";
+import { handleRequest } from "../store/mock/MockApi";
 
 // exampleRequest {
 //   headers?: any;
@@ -28,16 +29,23 @@ const apiMiddleware = ({ dispatch }) => (next) => (action) => {
     req.data = requestData.data;
   }
 
-  dispatch({ type: `${name}_REQUEST` });
-  axios
-    .request(req)
-    .then(({ data }) => {
-      dispatch({ type: `${name}_SUCCESS`, response: data, extraData });
-    })
-    .catch((err) => {
-      const errorMessage = err.response ? err.response.data.error : "An unknown error has occurred";
-      dispatch({ type: `${name}_FAILURE`, error: errorMessage });
-    });
+  if (config.ENV === "development") {
+    // Use Mock API
+    handleRequest(dispatch, name, req);
+  } else {
+    dispatch({ type: `${name}_REQUEST` });
+    axios
+      .request(req)
+      .then(({ data }) => {
+        dispatch({ type: `${name}_SUCCESS`, response: data, extraData });
+      })
+      .catch((err) => {
+        const errorMessage = err.response
+          ? err.response.data.error
+          : "An unknown error has occurred";
+        dispatch({ type: `${name}_FAILURE`, error: errorMessage });
+      });
+  }
 };
 
 export default apiMiddleware;

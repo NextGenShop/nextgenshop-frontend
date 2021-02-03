@@ -1,0 +1,26 @@
+[
+  {
+    "userId": 0,
+    "fullName": "Mock User 1",
+    "email": "mockuser1@gmail.com",
+    "password": "password",
+    "type": "shopper",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTW9jayBVc2VyIDEifQ.CnOm194RXYztVQnGS6viXczUdfzZxDEVzF3UxAEsT8o"
+  },
+  {
+    "userId": 1,
+    "fullName": "Mock Cashier User",
+    "email": "mockcashieruser@gmail.com",
+    "password": "password",
+    "type": "cashier",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTW9jayBDYXNoaWVyIFVzZXIifQ.bwyFTfHeHgumUDcCouZbwVfrFt7EzBngfxkJ-XXx3Xo"
+  },
+  {
+    "userId": 2,
+    "fullName": "Mock User 2",
+    "email": "mockuser2@gmail.com",
+    "password": "password",
+    "type": "shopper",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTW9jayBVc2VyIDIifQ.AN6kDMph64I1D2EWiwFSQjTthyMjY_7oyuuOKJKWr6A"
+  }
+]

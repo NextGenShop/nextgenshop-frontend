@@ -6,7 +6,7 @@ const baseUrl = "/api/auth";
 export const getUser = () => (dispatch, getState) => {
   dispatch({
     type: "API",
-    name: types.GET_AUTH_USER,
+    name: types.GET_USER,
     url: `${baseUrl}/user/`,
     requestData: {
       method: "GET",
@@ -48,5 +48,14 @@ export const register = (data) => (dispatch) => {
       method: "POST",
       data,
     },
+  });
+};
+
+export const clearErrors = () => (dispatch) => {
+  dispatch({
+    type: `${types.LOGIN}_CLEARERR`,
+  });
+  dispatch({
+    type: `${types.REGISTER}_CLEARERR`,
   });
 };

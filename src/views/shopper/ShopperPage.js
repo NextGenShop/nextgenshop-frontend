@@ -6,13 +6,13 @@ import Grid from "@material-ui/core/Grid";
 import ProductCatalog from "../../components/ProductCatalog";
 import ProductSearchBox from "../../components/ProductSearchBox";
 import RetailerSelect from "../../components/RetailerSelect";
-import mockBasketItems from "../../store/mockdata/MockBasketItems.json";
+import mockBasketItems from "../../store/mock/MockBasketItems.json";
 import ArtificialCashier from "../../components/ArtificialCashier";
 import Basket from "../../components/Basket";
 import { addBasketItem, removeBasketItem } from "../../utils/basketUtils";
 
 const useStyles = makeStyles((theme) => ({
-  heading: {
+  root: {
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
   },
@@ -29,10 +29,7 @@ export default function ShopperPage() {
   const [retailer, setRetailer] = React.useState("Tesco");
 
   return (
-    <Container maxWidth="xl">
-      <Typography variant="h2" className={classes.heading}>
-        NextGenShop
-      </Typography>
+    <Container maxWidth="xl" className={classes.root}>
       <Grid container spacing={3}>
         <Grid item md={6}>
           <Typography variant="subtitle1">Artificial Cashier</Typography>
