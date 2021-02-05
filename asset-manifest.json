@@ -1,17 +1,20 @@
 {
   "files": {
-    "main.js": "/nextgenshop-frontend/static/js/main.1b3b9509.chunk.js",
-    "main.js.map": "/nextgenshop-frontend/static/js/main.1b3b9509.chunk.js.map",
+    "main.js": "/nextgenshop-frontend/static/js/main.167e4d30.chunk.js",
+    "main.js.map": "/nextgenshop-frontend/static/js/main.167e4d30.chunk.js.map",
     "runtime-main.js": "/nextgenshop-frontend/static/js/runtime-main.cca69409.js",
     "runtime-main.js.map": "/nextgenshop-frontend/static/js/runtime-main.cca69409.js.map",
-    "static/js/2.ca893f40.chunk.js": "/nextgenshop-frontend/static/js/2.ca893f40.chunk.js",
-    "static/js/2.ca893f40.chunk.js.map": "/nextgenshop-frontend/static/js/2.ca893f40.chunk.js.map",
+    "static/css/2.caac94ae.chunk.css": "/nextgenshop-frontend/static/css/2.caac94ae.chunk.css",
+    "static/js/2.53ef2fdf.chunk.js": "/nextgenshop-frontend/static/js/2.53ef2fdf.chunk.js",
+    "static/js/2.53ef2fdf.chunk.js.map": "/nextgenshop-frontend/static/js/2.53ef2fdf.chunk.js.map",
     "index.html": "/nextgenshop-frontend/index.html",
-    "static/js/2.ca893f40.chunk.js.LICENSE.txt": "/nextgenshop-frontend/static/js/2.ca893f40.chunk.js.LICENSE.txt"
+    "static/css/2.caac94ae.chunk.css.map": "/nextgenshop-frontend/static/css/2.caac94ae.chunk.css.map",
+    "static/js/2.53ef2fdf.chunk.js.LICENSE.txt": "/nextgenshop-frontend/static/js/2.53ef2fdf.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.cca69409.js",
-    "static/js/2.ca893f40.chunk.js",
-    "static/js/main.1b3b9509.chunk.js"
+    "static/css/2.caac94ae.chunk.css",
+    "static/js/2.53ef2fdf.chunk.js",
+    "static/js/main.167e4d30.chunk.js"
   ]
 }
