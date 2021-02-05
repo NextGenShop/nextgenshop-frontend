@@ -9,6 +9,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import { Typography } from "@material-ui/core";
+import PlaceholderImage from "../assets/images/placeholder_image.png";
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -42,7 +43,7 @@ export default function Basket({ items, removeItem }) {
         {items.map((item) => (
           <ListItem key={item.basketItemId}>
             <ListItemAvatar>
-              <Avatar src={item.product.image} />
+              <Avatar src={PlaceholderImage} />
             </ListItemAvatar>
             <ListItemText primary={item.product.name} secondary={"Qty: " + item.quantity} />
             <ListItemSecondaryAction>

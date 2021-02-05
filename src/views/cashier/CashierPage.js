@@ -9,6 +9,7 @@ import ProductCatalog from "../../components/ProductCatalog";
 import mockBasketItems from "../../store/mock/MockBasketItems.json";
 import ProductSearchBox from "../../components/ProductSearchBox";
 import { addBasketItem, removeBasketItem } from "../../utils/basketUtils";
+import mockRetailers from "../../store/mock/MockRetailers.json";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,7 +37,7 @@ export default function CashierPage() {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [items, setItems] = React.useState(mockBasketItems);
 
-  const mockRetailer = "Waitrose";
+  const mockRetailer = mockRetailers[0].name;
 
   return (
     <Container maxWidth="xl" className={classes.root}>

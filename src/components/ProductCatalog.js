@@ -13,6 +13,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import Tooltip from "@material-ui/core/Tooltip";
+import PlaceholderImage from "../assets/images/placeholder_image.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,7 +78,9 @@ export default function ProductCatalog({ addToBasket, searchQuery, retailer, lim
         <TableBody>
           {getProducts().map((product) => (
             <TableRow key={product.productId}>
-              <Tooltip title={<img alt="product" className={classes.media} src={product.image} />}>
+              <Tooltip
+                title={<img alt="product" className={classes.media} src={PlaceholderImage} />}
+              >
                 <TableCell component="th" scope="row">
                   {product.name}
                 </TableCell>
@@ -157,7 +160,7 @@ export default function ProductCatalog({ addToBasket, searchQuery, retailer, lim
                 </Button>
               </div>
             </div>
-            <CardMedia className={classes.media} image={product.image} />
+            <CardMedia className={classes.media} image={PlaceholderImage} />
           </Card>
         </Grid>
       ))}

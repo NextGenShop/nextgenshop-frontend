@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
-import { TextField } from "@material-ui/core";
+import { Divider, TextField } from "@material-ui/core";
 import { connect } from "react-redux";
 import { actions, types } from "../store/api/auth";
 import { Redirect } from "react-router-dom";
@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     paddingBottom: theme.spacing(2),
   },
+  mr: {
+    marginRight: theme.spacing(1),
+  },
   mt: {
     marginTop: theme.spacing(1),
   },
@@ -39,6 +42,14 @@ function Login({ auth, error, dispatchLogin, dispatchClearErrors }) {
       displayToast("", error, "danger", dispatchClearErrors);
     }
   }, [error, dispatchClearErrors]);
+
+  const loginShopper = () => {
+    dispatchLogin({ email: "mockuser1@gmail.com", password: "password" });
+  };
+
+  const loginCashier = () => {
+    dispatchLogin({ email: "mockcashieruser@gmail.com", password: "password" });
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -63,9 +74,21 @@ function Login({ auth, error, dispatchLogin, dispatchClearErrors }) {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <Button className={classes.mt} variant="contained" onClick={handleLogin}>
+      <Button className={classes.mt} color="primary" variant="contained" onClick={handleLogin}>
         Login
       </Button>
+      <Divider className={classes.mt} />
+      <div className={classes.mt}>
+        <Button className={classes.mr} variant="contained" onClick={loginShopper}>
+          Login as shopper
+        </Button>
+        <Button variant="contained" onClick={loginCashier}>
+          Login as cashier
+        </Button>
+      </div>
+      <Typography className={classes.mt} variant="caption">
+        These buttons are for testing purposes.
+      </Typography>
     </Container>
   );
 }
