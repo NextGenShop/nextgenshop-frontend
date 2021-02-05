@@ -1,212 +1,212 @@
 [
   {
     "productId": 0,
-    "name": "Kit Kat 2 Finger Milk Chocolate Biscuits 9 Pack 186.3G",
+    "name": "Milk Chocolate Biscuits 9 Pack",
     "price": 1.5,
-    "image": "https://img.tesco.com/Groceries/pi/400/7613036099400/IDShot_225x225.jpg",
-    "retailer": "Tesco"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer A"
   },
   {
     "productId": 1,
-    "name": "Ben & Jerry's Cookie Dough Vanilla Ice Cream 465Ml",
+    "name": "Cookie Dough Vanilla Ice Cream 465Ml",
     "price": 4.5,
-    "image": "https://img.tesco.com/Groceries/pi/105/8711327373105/IDShot_225x225.jpg",
-    "retailer": "Tesco"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer A"
   },
   {
     "productId": 2,
-    "name": "Pepsi Max 24 X 330Ml",
-    "price": 8.5,
-    "image": "https://img.tesco.com/Groceries/pi/754/4060800130754/IDShot_225x225.jpg",
-    "retailer": "Tesco"
+    "name": "Sparkling Water 330Ml",
+    "price": 2.5,
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer A"
   },
   {
     "productId": 3,
-    "name": "Tesco Diced Beef 600G",
+    "name": "Diced Beef 600G",
     "price": 4.9,
-    "image": "https://img.tesco.com/Groceries/pi/558/5054268893558/IDShot_225x225.jpg",
-    "retailer": "Tesco"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer A"
   },
   {
     "productId": 4,
-    "name": "Tesco Ultra Kitchen Towel 200 Sheets",
+    "name": "Kitchen Towel 200 Sheets",
     "price": 2.5,
-    "image": "https://img.tesco.com/Groceries/pi/520/5057373586520/IDShot_225x225.jpg",
-    "retailer": "Tesco"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer A"
   },
   {
     "productId": 5,
-    "name": "Walkers Classic Variety Multipack Crisps 24 X 25G",
+    "name": "Multipack Crisps 24 X 25G",
     "price": 3,
-    "image": "https://img.tesco.com/Groceries/pi/044/5000328187044/IDShot_225x225.jpg",
-    "retailer": "Tesco"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer A"
   },
   {
     "productId": 6,
-    "name": "Cadbury Dairy Milk Chocolate Bar 110G",
+    "name": "Dairy Milk Chocolate Bar 110G",
     "price": 0.98,
-    "image": "https://img.tesco.com/Groceries/pi/759/7622300845759/IDShot_225x225.jpg",
-    "retailer": "Tesco"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer A"
   },
   {
     "productId": 7,
     "name": "Granulated Sugar 1Kg",
     "price": 0.65,
-    "image": "https://img.tesco.com/Groceries/pi/502/5010067301502/IDShot_225x225.jpg",
-    "retailer": "Tesco"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer A"
   },
   {
     "productId": 8,
-    "name": "Pringles Sour Cream & Onion Crisps 200G",
+    "name": "Sour Cream & Onion Crisps 200G",
     "price": 2.5,
-    "image": "https://img.tesco.com/Groceries/pi/753/5053990138753/IDShot_225x225.jpg",
-    "retailer": "Tesco"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer A"
   },
   {
     "productId": 9,
-    "name": "Tesco Large Free Range Eggs 12 Pack",
+    "name": "Large Free Range Eggs 12 Pack",
     "price": 2.05,
-    "image": "https://img.tesco.com/Groceries/pi/457/5051140150457/IDShot_225x225.jpg",
-    "retailer": "Tesco"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer A"
   },
   {
     "productId": 10,
-    "name": "Sainsbury's Beef Mince 5% Fat 500g ",
+    "name": "Beef Mince 5% Fat 500g ",
     "price": 2.6,
-    "image": "https://www.sainsburys.co.uk/wcsstore7.59.1/ExtendedSitesCatalogAssetStore/images/catalog/productImages/55/0000001824155/0000001824155_L.jpeg",
-    "retailer": "Sainsbury's"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer B"
   },
   {
     "productId": 11,
-    "name": "Sainsbury's Chicken Breast Fillets 640g ",
+    "name": "Chicken Breast Fillets 640g ",
     "price": 3.6,
-    "image": "https://www.sainsburys.co.uk/wcsstore7.59.1/ExtendedSitesCatalogAssetStore/images/catalog/productImages/55/0000000296755/0000000296755_L.jpeg",
-    "retailer": "Sainsbury's"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer B"
   },
   {
     "productId": 12,
-    "name": "Sainsbury's King Prawns 150g ",
+    "name": "King Prawns 150g ",
     "price": 3,
-    "image": "https://www.sainsburys.co.uk/wcsstore7.59.1/ExtendedSitesCatalogAssetStore/images/catalog/productImages/50/0000001830750/0000001830750_L.jpeg",
-    "retailer": "Sainsbury's"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer B"
   },
   {
     "productId": 13,
-    "name": "Sainsbury's Chicken Thigh Fillets 640g ",
+    "name": "Chicken Thigh Fillets 640g ",
     "price": 3.2,
-    "image": "https://www.sainsburys.co.uk/wcsstore7.59.1/ExtendedSitesCatalogAssetStore/images/catalog/productImages/17/0000000296717/0000000296717_L.jpeg",
-    "retailer": "Sainsbury's"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer B"
   },
   {
     "productId": 14,
-    "name": "Sainsbury's British Extra Lean Diced Beef 250g ",
+    "name": "British Extra Lean Diced Beef 250g ",
     "price": 2.5,
-    "image": "https://www.sainsburys.co.uk/wcsstore7.59.1/ExtendedSitesCatalogAssetStore/images/catalog/productImages/15/0000000414715/0000000414715_L.jpeg",
-    "retailer": "Sainsbury's"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer B"
   },
   {
     "productId": 15,
-    "name": "Sainsbury's Fairtrade Bananas x5 ",
+    "name": "Fairtrade Bananas x5 ",
     "price": 0.8,
-    "image": "https://www.sainsburys.co.uk/wcsstore7.59.1/ExtendedSitesCatalogAssetStore/images/catalog/productImages/58/0000001768558/0000001768558_L.jpeg",
-    "retailer": "Sainsbury's"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer B"
   },
   {
     "productId": 16,
-    "name": "Sainsbury's British Semi Skimmed Milk 2.27L (4 pint)",
+    "name": "British Semi Skimmed Milk 2.27L (4 pint)",
     "price": 1.1,
-    "image": "https://assets.sainsburys-groceries.co.uk/gol/357937/image.jpg",
-    "retailer": "Sainsbury's"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer B"
   },
   {
     "productId": 17,
-    "name": "Sainsbury's British Whole Milk 2.27L (4 pint)",
+    "name": "British Whole Milk 2.27L (4 pint)",
     "price": 1.1,
-    "image": "https://assets.sainsburys-groceries.co.uk/gol/181402/image.jpg",
-    "retailer": "Sainsbury's"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer B"
   },
   {
     "productId": 18,
-    "name": "Cravendale Purefilter Whole Milk 2L",
+    "name": "Whole Milk 2L",
     "price": 1.6,
-    "image": "https://assets.sainsburys-groceries.co.uk/gol/3216613/image.jpg",
-    "retailer": "Sainsbury's"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer B"
   },
   {
     "productId": 19,
-    "name": "Sainsbury's White Granulated Sugar 1kg ",
+    "name": "White Granulated Sugar 1kg ",
     "price": 0.75,
-    "image": "https://www.sainsburys.co.uk/wcsstore7.59.1/ExtendedSitesCatalogAssetStore/images/catalog/productImages/38/0000000180238/0000000180238_L.jpeg",
-    "retailer": "Sainsbury's"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer B"
   },
   {
     "productId": 20,
-    "name": "Waitrose Mild Scottish Oak Smoked Salmon",
+    "name": "Smoked Salmon",
     "price": 5,
-    "image": "https://ecom-su-static-prod.wtrecom.com/images/products/3/LN_451045_BP_3.jpg",
-    "retailer": "Waitrose"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer C"
   },
   {
     "productId": 21,
-    "name": "Waitrose Seedless Grape Selection",
+    "name": "Seedless Grape Selection",
     "price": 2.3,
-    "image": "https://ecom-su-static-prod.wtrecom.com/images/products/3/LN_049842_BP_3.jpg",
-    "retailer": "Waitrose"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer C"
   },
   {
     "productId": 22,
     "name": "Essential British Chicken Mini Breast Fillets",
     "price": 3.5,
-    "image": "https://ecom-su-static-prod.wtrecom.com/images/products/3/LN_040593_BP_3.jpg",
-    "retailer": "Waitrose"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer C"
   },
   {
     "productId": 23,
-    "name": "Essential Semi Skimmed Milk",
+    "name": "Semi Skimmed Milk",
     "price": 0.89,
-    "image": "https://ecom-su-static-prod.wtrecom.com/images/products/3/LN_053448_BP_3.jpg",
-    "retailer": "Waitrose"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer C"
   },
   {
     "productId": 24,
-    "name": "Waitrose Eggs British Blacktail Free Range Large",
+    "name": "Large Eggs",
     "price": 3.5,
-    "image": "https://ecom-su-static-prod.wtrecom.com/images/products/3/LN_085847_BP_3.jpg",
-    "retailer": "Waitrose"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer C"
   },
   {
     "productId": 25,
-    "name": "Waitrose Aberdeen Angus beef rump steak",
+    "name": "Beef rump steak",
     "price": 4,
-    "image": "https://ecom-su-static-prod.wtrecom.com/images/products/3/LN_493922_BP_3.jpg",
-    "retailer": "Waitrose"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer C"
   },
   {
     "productId": 26,
-    "name": "Waitrose Aberdeen Angus Beef Sirloin Steak",
+    "name": "Beef Sirloin Steak",
     "price": 4.5,
-    "image": "https://ecom-su-static-prod.wtrecom.com/images/products/3/LN_697224_BP_3.jpg",
-    "retailer": "Waitrose"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer C"
   },
   {
     "productId": 27,
-    "name": "Waitrose Lean Diced British Beef Braising Steak",
+    "name": "Lean Diced British Beef Braising Steak",
     "price": 4.25,
-    "image": "https://ecom-su-static-prod.wtrecom.com/images/products/3/LN_886378_BP_3.jpg",
-    "retailer": "Waitrose"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer C"
   },
   {
     "productId": 28,
-    "name": "Big & Juicy 2 Raw Canadian Split Lobster Tails",
+    "name": "2 Raw Lobster Tails",
     "price": 20,
-    "image": "https://ecom-su-static-prod.wtrecom.com/images/products/3/LN_896909_BP_3.jpg",
-    "retailer": "Waitrose"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer C"
   },
   {
     "productId": 29,
-    "name": "Heinz Tomato Ketchup",
+    "name": "Tomato Ketchup",
     "price": 1.75,
-    "image": "https://ecom-su-static-prod.wtrecom.com/images/products/3/LN_074234_BP_3.jpg",
-    "retailer": "Waitrose"
+    "image": "mockImageUrl",
+    "retailer": "Mock Retailer C"
   }
 ]

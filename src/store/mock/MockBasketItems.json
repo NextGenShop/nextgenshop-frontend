@@ -3,10 +3,10 @@
     "basketItemId": 0,
     "product": {
       "productId": 0,
-      "name": "Kit Kat 2 Finger Milk Chocolate Biscuits 9 Pack 186.3G",
+      "name": "Milk Chocolate Biscuits 9 Pack",
       "price": 1.5,
-      "image": "https://img.tesco.com/Groceries/pi/400/7613036099400/IDShot_225x225.jpg",
-      "retailer": "Tesco"
+      "image": "mockImageUrl",
+      "retailer": "Mock Retailer A"
     },
     "quantity": 3
   },
@@ -14,10 +14,10 @@
     "basketItemId": 1,
     "product": {
       "productId": 1,
-      "name": "Ben & Jerry's Cookie Dough Vanilla Ice Cream 465Ml",
+      "name": "Cookie Dough Vanilla Ice Cream 465Ml",
       "price": 4.5,
-      "image": "https://img.tesco.com/Groceries/pi/105/8711327373105/IDShot_225x225.jpg",
-      "retailer": "Tesco"
+      "image": "mockImageUrl",
+      "retailer": "Mock Retailer A"
     },
     "quantity": 1
   },
@@ -25,10 +25,10 @@
     "basketItemId": 2,
     "product": {
       "productId": 2,
-      "name": "Pepsi Max 24 X 330Ml",
-      "price": 8.5,
-      "image": "https://img.tesco.com/Groceries/pi/754/4060800130754/IDShot_225x225.jpg",
-      "retailer": "Tesco"
+      "name": "Sparkling Water 330Ml",
+      "price": 2.5,
+      "image": "mockImageUrl",
+      "retailer": "Mock Retailer A"
     },
     "quantity": 2
   },
@@ -36,10 +36,10 @@
     "basketItemId": 3,
     "product": {
       "productId": 3,
-      "name": "Tesco Diced Beef 600G",
+      "name": "Diced Beef 600G",
       "price": 4.9,
-      "image": "https://img.tesco.com/Groceries/pi/558/5054268893558/IDShot_225x225.jpg",
-      "retailer": "Tesco"
+      "image": "mockImageUrl",
+      "retailer": "Mock Retailer A"
     },
     "quantity": 1
   },
@@ -47,10 +47,10 @@
     "basketItemId": 4,
     "product": {
       "productId": 4,
-      "name": "Tesco Ultra Kitchen Towel 200 Sheets",
+      "name": "Kitchen Towel 200 Sheets",
       "price": 2.5,
-      "image": "https://img.tesco.com/Groceries/pi/520/5057373586520/IDShot_225x225.jpg",
-      "retailer": "Tesco"
+      "image": "mockImageUrl",
+      "retailer": "Mock Retailer A"
     },
     "quantity": 4
   }
