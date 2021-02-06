@@ -1,20 +1,23 @@
 {
   "files": {
-    "main.js": "/nextgenshop-frontend/static/js/main.167e4d30.chunk.js",
-    "main.js.map": "/nextgenshop-frontend/static/js/main.167e4d30.chunk.js.map",
+    "main.css": "/nextgenshop-frontend/static/css/main.bb99b322.chunk.css",
+    "main.js": "/nextgenshop-frontend/static/js/main.c4c8e433.chunk.js",
+    "main.js.map": "/nextgenshop-frontend/static/js/main.c4c8e433.chunk.js.map",
     "runtime-main.js": "/nextgenshop-frontend/static/js/runtime-main.cca69409.js",
     "runtime-main.js.map": "/nextgenshop-frontend/static/js/runtime-main.cca69409.js.map",
     "static/css/2.caac94ae.chunk.css": "/nextgenshop-frontend/static/css/2.caac94ae.chunk.css",
-    "static/js/2.53ef2fdf.chunk.js": "/nextgenshop-frontend/static/js/2.53ef2fdf.chunk.js",
-    "static/js/2.53ef2fdf.chunk.js.map": "/nextgenshop-frontend/static/js/2.53ef2fdf.chunk.js.map",
+    "static/js/2.cdae174d.chunk.js": "/nextgenshop-frontend/static/js/2.cdae174d.chunk.js",
+    "static/js/2.cdae174d.chunk.js.map": "/nextgenshop-frontend/static/js/2.cdae174d.chunk.js.map",
     "index.html": "/nextgenshop-frontend/index.html",
     "static/css/2.caac94ae.chunk.css.map": "/nextgenshop-frontend/static/css/2.caac94ae.chunk.css.map",
-    "static/js/2.53ef2fdf.chunk.js.LICENSE.txt": "/nextgenshop-frontend/static/js/2.53ef2fdf.chunk.js.LICENSE.txt"
+    "static/css/main.bb99b322.chunk.css.map": "/nextgenshop-frontend/static/css/main.bb99b322.chunk.css.map",
+    "static/js/2.cdae174d.chunk.js.LICENSE.txt": "/nextgenshop-frontend/static/js/2.cdae174d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.cca69409.js",
     "static/css/2.caac94ae.chunk.css",
-    "static/js/2.53ef2fdf.chunk.js",
-    "static/js/main.167e4d30.chunk.js"
+    "static/js/2.cdae174d.chunk.js",
+    "static/css/main.bb99b322.chunk.css",
+    "static/js/main.c4c8e433.chunk.js"
   ]
 }
