@@ -6,9 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import Basket from "../../components/Basket";
 import VideoChat from "../../components/VideoChat";
 import ProductCatalog from "../../components/ProductCatalog";
-import mockBasketItems from "../../store/mock/MockBasketItems.json";
 import ProductSearchBox from "../../components/ProductSearchBox";
-import { addBasketItem, removeBasketItem } from "../../utils/basketUtils";
 import mockRetailers from "../../store/mock/MockRetailers.json";
 
 const useStyles = makeStyles((theme) => ({
@@ -35,9 +33,8 @@ const useStyles = makeStyles((theme) => ({
 export default function CashierPage() {
   const classes = useStyles();
   const [searchQuery, setSearchQuery] = React.useState("");
-  const [items, setItems] = React.useState(mockBasketItems);
-
   const mockRetailer = mockRetailers[0].name;
+  const mockConnectedShopperId = 0;
 
   return (
     <Container maxWidth="xl" className={classes.root}>
@@ -75,17 +72,12 @@ export default function CashierPage() {
               <ProductCatalog
                 tableView
                 retailer={mockRetailer}
-                addToBasket={(product) => {
-                  addBasketItem(product, items, setItems);
-                }}
                 searchQuery={searchQuery}
+                shopperId={mockConnectedShopperId}
               />
               <hr className={classes.mt} />
               <Typography variant="subtitle1">Customer Basket</Typography>
-              <Basket
-                items={items}
-                removeItem={(basketItemId) => removeBasketItem(basketItemId, items, setItems)}
-              />
+              <Basket shopperId={mockConnectedShopperId} />
             </Grid>
           </Grid>
         </Grid>

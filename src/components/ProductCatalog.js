@@ -6,7 +6,6 @@ import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
-import mockProducts from "../store/mock/MockSupermarketDataset.json";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -14,6 +13,10 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import Tooltip from "@material-ui/core/Tooltip";
 import PlaceholderImage from "../assets/images/placeholder_image.png";
+import { connect } from "react-redux";
+import { actions as productActions } from "../store/api/product";
+import { actions as basketActions } from "../store/api/basket";
+import { addBasketItem } from "../utils/basketUtils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,26 +60,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ProductCatalog({ addToBasket, searchQuery, retailer, limit, tableView }) {
+function ProductCatalog({
+  searchQuery,
+  retailer,
+  limit,
+  tableView,
+  products,
+  shopperId,
+  dispatchGetProducts,
+  dispatchUpdateBasket,
+  basket,
+}) {
   const classes = useStyles();
 
-  const getProducts = () => {
-    let products = mockProducts.filter((product) => product.retailer === retailer);
-    if (searchQuery)
-      products = products.filter(
-        (product) =>
-          product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          product.productId.toString() === searchQuery
-      );
-    if (limit) products = products.slice(0, Math.min(limit, products.length));
-    return products;
+  React.useEffect(() => {
+    dispatchGetProducts(searchQuery, retailer, limit);
+  }, [dispatchGetProducts, limit, retailer, searchQuery]);
+
+  const addToBasket = (product) => {
+    const newBasket = addBasketItem(product, basket);
+    dispatchUpdateBasket(shopperId, newBasket);
   };
 
   return tableView ? (
     <TableContainer className={classes.root}>
       <Table size="small" aria-label="product catalog table">
         <TableBody>
-          {getProducts().map((product) => (
+          {products.map((product) => (
             <TableRow key={product.productId}>
               <Tooltip
                 title={<img alt="product" className={classes.media} src={PlaceholderImage} />}
@@ -103,7 +113,7 @@ export default function ProductCatalog({ addToBasket, searchQuery, retailer, lim
     </TableContainer>
   ) : (
     <Grid container spacing={2} className={classes.root}>
-      {getProducts().map((product) => (
+      {products.map((product) => (
         <Grid item md={4} key={product.productId}>
           <Card className={classes.card}>
             <div className={classes.details}>
@@ -167,3 +177,17 @@ export default function ProductCatalog({ addToBasket, searchQuery, retailer, lim
     </Grid>
   );
 }
+
+const mapStateToProps = (state) => ({
+  products: state.product.products,
+  basket: state.basket,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  dispatchGetProducts: (query, retailer, limit) =>
+    dispatch(productActions.getProducts(query, retailer, limit)),
+  dispatchUpdateBasket: (shopperId, basketData) =>
+    dispatch(basketActions.updateBasket(shopperId, basketData)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCatalog);

@@ -10,6 +10,9 @@ import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import { Typography } from "@material-ui/core";
 import PlaceholderImage from "../assets/images/placeholder_image.png";
+import { connect } from "react-redux";
+import { actions } from "../store/api/basket";
+import { removeBasketItem } from "../utils/basketUtils";
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -26,47 +29,64 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Basket({ items, removeItem }) {
+function Basket({ shopperId, dispatchUpdateBasket, dispatchGetBasket, basket }) {
   const classes = useStyles();
 
-  const calcTotalPrice = () => {
-    let total = 0;
-    for (let item of items) {
-      total += item.product.price * item.quantity;
-    }
-    return total;
+  React.useEffect(() => {
+    dispatchGetBasket();
+  }, [dispatchGetBasket]);
+
+  const removeItem = (productId) => {
+    const newBasket = removeBasketItem(productId, basket);
+    dispatchUpdateBasket(shopperId, newBasket);
   };
 
   return (
     <React.Fragment>
       <List className={classes.list}>
-        {items.map((item) => (
-          <ListItem key={item.basketItemId}>
-            <ListItemAvatar>
-              <Avatar src={PlaceholderImage} />
-            </ListItemAvatar>
-            <ListItemText primary={item.product.name} secondary={"Qty: " + item.quantity} />
-            <ListItemSecondaryAction>
-              <Typography className={classes.price} display="inline">
-                £{(item.product.price * item.quantity).toFixed(2)}
-              </Typography>
-              <IconButton
-                edge="end"
-                aria-label="delete"
-                onClick={() => removeItem(item.basketItemId)}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </ListItemSecondaryAction>
-          </ListItem>
-        ))}
+        {basket && basket.items && basket.items.length > 0 ? (
+          basket.items.map((item) => (
+            <ListItem key={item.product.productId}>
+              <ListItemAvatar>
+                <Avatar src={PlaceholderImage} />
+              </ListItemAvatar>
+              <ListItemText primary={item.product.name} secondary={"Qty: " + item.quantity} />
+              <ListItemSecondaryAction>
+                <Typography className={classes.price} display="inline">
+                  £{(item.product.price * item.quantity).toFixed(2)}
+                </Typography>
+                <IconButton
+                  edge="end"
+                  aria-label="delete"
+                  onClick={() => removeItem(item.product.productId)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
+          ))
+        ) : (
+          <Typography variant="subtitle2">Your shopping basket is empty.</Typography>
+        )}
       </List>
       <Typography className={classes.total} variant="h6" component="div">
         Total:{" "}
         <Typography variant="h6" display="inline">
-          £ {calcTotalPrice().toFixed(2)}
+          £ {basket && basket.totalPrice ? basket.totalPrice.toFixed(2) : 0}
         </Typography>
       </Typography>
     </React.Fragment>
   );
 }
+
+const mapStateToProps = (state) => ({
+  basket: state.basket,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  dispatchGetBasket: (shopperId) => dispatch(actions.getBasket(shopperId)),
+  dispatchUpdateBasket: (shopperId, basketData) =>
+    dispatch(actions.updateBasket(shopperId, basketData)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Basket);

@@ -6,11 +6,10 @@ import Grid from "@material-ui/core/Grid";
 import ProductCatalog from "../../components/ProductCatalog";
 import ProductSearchBox from "../../components/ProductSearchBox";
 import RetailerSelect from "../../components/RetailerSelect";
-import mockBasketItems from "../../store/mock/MockBasketItems.json";
 import ArtificialCashier from "../../components/ArtificialCashier";
 import Basket from "../../components/Basket";
-import { addBasketItem, removeBasketItem } from "../../utils/basketUtils";
 import mockRetailers from "../../store/mock/MockRetailers.json";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,10 +21,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ShopperPage() {
+function ShopperPage({ authUser }) {
   const classes = useStyles();
-
-  const [items, setItems] = React.useState(mockBasketItems);
   const [searchQuery, setSearchQuery] = React.useState("");
   const [retailer, setRetailer] = React.useState(mockRetailers[0].name);
 
@@ -64,20 +61,21 @@ export default function ShopperPage() {
           </Grid>
           <ProductCatalog
             retailer={retailer}
-            addToBasket={(product) => {
-              addBasketItem(product, items, setItems);
-            }}
             searchQuery={searchQuery}
             limit={9}
+            shopperId={authUser.userId}
           />
           <hr className={classes.mt} />
           <Typography variant="subtitle1">Shopping Basket</Typography>
-          <Basket
-            items={items}
-            removeItem={(basketItemId) => removeBasketItem(basketItemId, items, setItems)}
-          />
+          <Basket shopperId={authUser.userId} />
         </Grid>
       </Grid>
     </Container>
   );
 }
+
+const mapStateToProps = (state) => ({
+  authUser: state.auth.user,
+});
+
+export default connect(mapStateToProps, null)(ShopperPage);

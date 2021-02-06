@@ -1,6 +1,5 @@
 [
   {
-    "basketItemId": 0,
     "product": {
       "productId": 0,
       "name": "Milk Chocolate Biscuits 9 Pack",
@@ -11,7 +10,6 @@
     "quantity": 3
   },
   {
-    "basketItemId": 1,
     "product": {
       "productId": 1,
       "name": "Cookie Dough Vanilla Ice Cream 465Ml",
@@ -22,7 +20,6 @@
     "quantity": 1
   },
   {
-    "basketItemId": 2,
     "product": {
       "productId": 2,
       "name": "Sparkling Water 330Ml",
@@ -33,7 +30,6 @@
     "quantity": 2
   },
   {
-    "basketItemId": 3,
     "product": {
       "productId": 3,
       "name": "Diced Beef 600G",
@@ -44,7 +40,6 @@
     "quantity": 1
   },
   {
-    "basketItemId": 4,
     "product": {
       "productId": 4,
       "name": "Kitchen Towel 200 Sheets",

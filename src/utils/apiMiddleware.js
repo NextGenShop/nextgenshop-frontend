@@ -5,6 +5,7 @@ import { handleRequest } from "../store/mock/MockApi";
 // exampleRequest {
 //   headers?: any;
 //   data?: any;
+//   params?: any;
 //   url: string;
 //   method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 // }
@@ -27,6 +28,9 @@ const apiMiddleware = ({ dispatch }) => (next) => (action) => {
   }
   if (requestData.data) {
     req.data = requestData.data;
+  }
+  if (requestData.params) {
+    req.params = requestData.params;
   }
 
   if (config.ENV === "development") {
