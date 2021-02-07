@@ -33,23 +33,19 @@ const apiMiddleware = ({ dispatch }) => (next) => (action) => {
     req.params = requestData.params;
   }
 
-  if (config.ENV === "development") {
-    // Use Mock API
-    handleRequest(dispatch, name, req);
-  } else {
-    dispatch({ type: `${name}_REQUEST` });
-    axios
-      .request(req)
-      .then(({ data }) => {
-        dispatch({ type: `${name}_SUCCESS`, response: data, extraData });
-      })
-      .catch((err) => {
-        const errorMessage = err.response
-          ? err.response.data.error
-          : "An unknown error has occurred";
-        dispatch({ type: `${name}_FAILURE`, error: errorMessage });
-      });
-  }
+  // Use Mock API
+  handleRequest(dispatch, name, req);
+
+  // dispatch({ type: `${name}_REQUEST` });
+  // axios
+  //   .request(req)
+  //   .then(({ data }) => {
+  //     dispatch({ type: `${name}_SUCCESS`, response: data, extraData });
+  //   })
+  //   .catch((err) => {
+  //     const errorMessage = err.response ? err.response.data.error : "An unknown error has occurred";
+  //     dispatch({ type: `${name}_FAILURE`, error: errorMessage });
+  //   });
 };
 
 export default apiMiddleware;
