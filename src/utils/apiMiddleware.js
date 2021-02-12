@@ -1,6 +1,6 @@
-import axios from "axios";
-import config from "../config";
-import { handleRequest } from "../store/mock/MockApi";
+import axios from 'axios';
+import config from '../config';
+import { handleRequest } from '../store/mock/MockApi';
 
 // exampleRequest {
 //   headers?: any;
@@ -13,11 +13,11 @@ import { handleRequest } from "../store/mock/MockApi";
 const apiMiddleware = ({ dispatch }) => (next) => (action) => {
   next(action);
 
-  if (action.type !== "API") return;
+  if (action.type !== 'API') return;
 
   const { name, url, requestData, extraData } = action;
   axios.defaults.baseURL = config.API_URL;
-  axios.defaults.headers.common["Content-Type"] = "application/json";
+  axios.defaults.headers.common['Content-Type'] = 'application/json';
 
   let req = {
     url,
@@ -34,18 +34,22 @@ const apiMiddleware = ({ dispatch }) => (next) => (action) => {
   }
 
   // Use Mock API
-  handleRequest(dispatch, name, req);
-
-  // dispatch({ type: `${name}_REQUEST` });
-  // axios
-  //   .request(req)
-  //   .then(({ data }) => {
-  //     dispatch({ type: `${name}_SUCCESS`, response: data, extraData });
-  //   })
-  //   .catch((err) => {
-  //     const errorMessage = err.response ? err.response.data.error : "An unknown error has occurred";
-  //     dispatch({ type: `${name}_FAILURE`, error: errorMessage });
-  //   });
+  const usedMock = handleRequest(dispatch, name, req);
+  if (!usedMock) {
+    console.log(name);
+    dispatch({ type: `${name}_REQUEST` });
+    axios
+      .request(req)
+      .then(({ data }) => {
+        dispatch({ type: `${name}_SUCCESS`, response: data, extraData });
+      })
+      .catch((err) => {
+        const errorMessage = err.response
+          ? err.response.data.error
+          : 'An unknown error has occurred';
+        dispatch({ type: `${name}_FAILURE`, error: errorMessage });
+      });
+  }
 };
 
 export default apiMiddleware;

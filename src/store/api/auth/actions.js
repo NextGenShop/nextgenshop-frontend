@@ -1,15 +1,15 @@
-import authHeader from "../../../utils/authHeader";
-import * as types from "./types";
+import authHeader from '../../../utils/authHeader';
+import * as types from './types';
 
-const baseUrl = "/api/auth";
+const baseUrl = '/auth';
 
 export const getUser = () => (dispatch, getState) => {
   dispatch({
-    type: "API",
+    type: 'API',
     name: types.GET_USER,
     url: `${baseUrl}/user/`,
     requestData: {
-      method: "GET",
+      method: 'GET',
       headers: authHeader(getState()),
     },
   });
@@ -17,11 +17,11 @@ export const getUser = () => (dispatch, getState) => {
 
 export const login = (data) => (dispatch) => {
   dispatch({
-    type: "API",
+    type: 'API',
     name: types.LOGIN,
     url: `${baseUrl}/login/`,
     requestData: {
-      method: "POST",
+      method: 'POST',
       data,
     },
   });
@@ -29,11 +29,11 @@ export const login = (data) => (dispatch) => {
 
 export const logout = () => async (dispatch, getState) => {
   dispatch({
-    type: "API",
+    type: 'API',
     name: types.LOGOUT,
     url: `${baseUrl}/logout/`,
     requestData: {
-      method: "GET",
+      method: 'GET',
       headers: authHeader(getState()),
     },
   });
@@ -41,11 +41,11 @@ export const logout = () => async (dispatch, getState) => {
 
 export const register = (data) => (dispatch) => {
   dispatch({
-    type: "API",
+    type: 'API',
     name: types.REGISTER,
     url: `${baseUrl}/register/`,
     requestData: {
-      method: "POST",
+      method: 'POST',
       data,
     },
   });

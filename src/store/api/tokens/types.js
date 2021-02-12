@@ -1,0 +1,2 @@
+export const GET_SPEECH_TO_TEXT_TOKEN = 'tokens/GET_SPEECH_TO_TEXT_TOKEN';
+export const GET_TEXT_TO_SPEECH_TOKEN = 'tokens/GET_TEXT_TO_SPEECH_TOKEN';

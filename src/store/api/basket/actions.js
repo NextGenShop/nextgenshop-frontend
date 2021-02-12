@@ -1,15 +1,15 @@
-import authHeader from "../../../utils/authHeader";
-import * as types from "./types";
+import authHeader from '../../../utils/authHeader';
+import * as types from './types';
 
-const baseUrl = "/api/basket";
+const baseUrl = '/basket';
 
 export const updateBasket = (shopperId, basket) => (dispatch, getState) => {
   dispatch({
-    type: "API",
+    type: 'API',
     name: types.UPDATE_BASKET,
     url: `${baseUrl}/${shopperId}`,
     requestData: {
-      method: "PUT",
+      method: 'PUT',
       headers: authHeader(getState()),
       data: basket,
     },
@@ -18,11 +18,11 @@ export const updateBasket = (shopperId, basket) => (dispatch, getState) => {
 
 export const getBasket = (shopperId) => (dispatch, getState) => {
   dispatch({
-    type: "API",
+    type: 'API',
     name: types.GET_BASKET,
     url: `${baseUrl}/${shopperId}`,
     requestData: {
-      method: "GET",
+      method: 'GET',
       headers: authHeader(getState()),
     },
   });
@@ -30,11 +30,11 @@ export const getBasket = (shopperId) => (dispatch, getState) => {
 
 export const deleteBasket = (shopperId) => (dispatch, getState) => {
   dispatch({
-    type: "API",
+    type: 'API',
     name: types.DELETE_BASKET,
     url: `${baseUrl}/${shopperId}`,
     requestData: {
-      method: "DELETE",
+      method: 'DELETE',
       headers: authHeader(getState()),
     },
   });
