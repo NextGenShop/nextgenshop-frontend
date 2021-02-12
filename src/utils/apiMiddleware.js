@@ -36,7 +36,6 @@ const apiMiddleware = ({ dispatch }) => (next) => (action) => {
   // Use Mock API
   const usedMock = handleRequest(dispatch, name, req);
   if (!usedMock) {
-    console.log(name);
     dispatch({ type: `${name}_REQUEST` });
     axios
       .request(req)
