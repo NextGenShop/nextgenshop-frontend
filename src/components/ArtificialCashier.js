@@ -4,10 +4,15 @@ import Paper from '@material-ui/core/Paper';
 import StopIcon from '@material-ui/icons/StopOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import MicRoundedIcon from '@material-ui/icons/MicRounded';
+import VoiceIcon from '@material-ui/icons/RecordVoiceOver';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 import { actions } from '../store/api/tokens';
-import recognizeMicrophone from 'watson-speech/speech-to-text/recognize-microphone';
+import {
+  getSupportedAudioFormat,
+  captureAudioFromMicrophone,
+  textToSpeech,
+} from '../utils/speechUtils';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,6 +43,14 @@ function ArtificialCashier({
   const [listening, setListening] = React.useState(false);
   const [stream, setStream] = React.useState(null);
   const [responseText, setResponseText] = React.useState('');
+  const audioRef = React.useRef(null);
+
+  const testVoices = [
+    'en-GB_JamesV3Voice',
+    'en-GB_KateV3Voice',
+    'en-GB_CharlotteV3Voice',
+  ];
+  //ref: https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices
 
   React.useEffect(() => {
     if (!speechToTextToken || !speechToTextUrl) {
@@ -64,41 +77,23 @@ function ArtificialCashier({
     textToSpeechUrl,
   ]);
 
-  const captureAudioFromMicrophone = async () => {
-    let mediaStream = null;
-    try {
-      mediaStream = await navigator.mediaDevices.getUserMedia({
-        video: false,
-        audio: true,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-
-    const recognizeMicrophoneStream = recognizeMicrophone({
-      url: speechToTextUrl,
-      accessToken: speechToTextToken,
-      objectMode: true,
-      extractResults: true,
-      format: true,
-      mediaStream,
-      keepMicrophone: true,
-    });
-
-    return recognizeMicrophoneStream;
-  };
-
   const startListening = async () => {
     setListening(true);
-    const stream = await captureAudioFromMicrophone();
+    const stream = await captureAudioFromMicrophone(
+      speechToTextUrl,
+      speechToTextToken
+    );
     stream.on('data', (data) => {
-      setResponseText(data.alternatives[0].transcript);
+      if (data && data.final) {
+        setResponseText(data.alternatives[0].transcript);
+      }
     });
     stream.on('error', function (err) {
       console.log(err);
       stopListening();
     });
     stream.on('end', function () {
+      console.log('stream ended');
       stopListening();
     });
     setStream(stream);
@@ -111,6 +106,30 @@ function ArtificialCashier({
       setStream(null);
     }
   };
+
+  const synthesizeTextToSpeech = async (text, voice) => {
+    if (!voice) voice = testVoices[0];
+    try {
+      const accept = getSupportedAudioFormat(audioRef);
+      const audio = textToSpeech(
+        textToSpeechUrl,
+        textToSpeechToken,
+        text,
+        voice,
+        accept
+      );
+      audioRef.current.setAttribute('src', audio.src);
+      await audioRef.current.play();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const AudioOutput = () => (
+    <audio ref={audioRef}>
+      Your browser does not support the <code>audio</code> element.
+    </audio>
+  );
 
   const ListenButton = listening ? (
     <IconButton color='secondary' aria-label='stop' onClick={stopListening}>
@@ -134,6 +153,17 @@ function ArtificialCashier({
                 : 'Press the mic icon and start speaking'}
             </Typography>
             {ListenButton}
+
+            <IconButton
+              color='primary'
+              aria-label='speak'
+              onClick={() =>
+                synthesizeTextToSpeech('Hello, i am your artificial cashier')
+              }
+            >
+              <VoiceIcon fontSize='large' />
+            </IconButton>
+            {AudioOutput}
           </React.Fragment>
         ) : (
           <Typography variant='subtitle2'>Loading... Please wait</Typography>

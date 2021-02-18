@@ -1,5 +1,6 @@
 const prod = {
-  API_URL: 'https://api.nextgenshop.co.uk',
+  // API_URL: 'https://api.nextgenshop.co.uk',
+  API_URL: 'https://nextgenshop.pythonanywhere.com',
 };
 
 const dev = {
