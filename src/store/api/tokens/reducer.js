@@ -5,6 +5,8 @@ const initialState = {
   speechToTextUrl: null,
   textToSpeechToken: null,
   textToSpeechUrl: null,
+  assistantToken: null,
+  assistantUrl: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -21,7 +23,12 @@ const reducer = (state = initialState, action) => {
         textToSpeechToken: action.response.accessToken,
         textToSpeechUrl: action.response.url,
       };
-
+    case `${types.GET_ASSISTANT_TOKEN}_SUCCESS`:
+      return {
+        ...state,
+        assistantToken: action.response.accessToken,
+        assistantUrl: action.response.url,
+      };
     default:
       return state;
   }

@@ -62,3 +62,41 @@ export const textToSpeech = (
     accept,
   });
 };
+
+export const createAssistantSession = async (assistantUrl, assistantToken) => {
+  let session;
+  try {
+    session = await fetch(`${assistantUrl}/sessions?version=2020-04-01`, {
+      method: 'post',
+      headers: new Headers({
+        Authorization: 'Bearer ' + assistantToken,
+        'Content-Type': 'application/json',
+      }),
+    });
+  } catch (err) {
+    console.log(err);
+  }
+  return session ? session.session_id : null;
+};
+
+export const messageAssistant = async (
+  assistantUrl,
+  assistantToken,
+  sessionId,
+  message
+) => {
+  let response;
+  try {
+    response = await fetch(`${assistantUrl}/sessions/${sessionId}/message`, {
+      method: 'post',
+      headers: new Headers({
+        Authorization: 'Bearer ' + assistantToken,
+        'Content-Type': 'application/json',
+      }),
+      body: { input: { text: message } },
+    });
+  } catch (err) {
+    console.log(err);
+  }
+  return response ? response.output.generic[0].text : null;
+};

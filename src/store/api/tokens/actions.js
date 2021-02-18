@@ -12,11 +12,23 @@ export const getSpeechToTextToken = () => (dispatch) => {
     },
   });
 };
+
 export const getTextToSpeechToken = () => (dispatch) => {
   dispatch({
     type: 'API',
     name: types.GET_TEXT_TO_SPEECH_TOKEN,
     url: `${baseUrl}/text-to-speech`,
+    requestData: {
+      method: 'GET',
+    },
+  });
+};
+
+export const getAssistantToken = () => (dispatch) => {
+  dispatch({
+    type: 'API',
+    name: types.GET_ASSISTANT_TOKEN,
+    url: `${baseUrl}/assistant`,
     requestData: {
       method: 'GET',
     },
