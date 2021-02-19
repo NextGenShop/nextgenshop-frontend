@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/nextgenshop-frontend/static/css/main.47ae0789.chunk.css",
-    "main.js": "/nextgenshop-frontend/static/js/main.8a25b618.chunk.js",
-    "main.js.map": "/nextgenshop-frontend/static/js/main.8a25b618.chunk.js.map",
+    "main.js": "/nextgenshop-frontend/static/js/main.f9e9bc73.chunk.js",
+    "main.js.map": "/nextgenshop-frontend/static/js/main.f9e9bc73.chunk.js.map",
     "runtime-main.js": "/nextgenshop-frontend/static/js/runtime-main.cca69409.js",
     "runtime-main.js.map": "/nextgenshop-frontend/static/js/runtime-main.cca69409.js.map",
     "static/css/2.caac94ae.chunk.css": "/nextgenshop-frontend/static/css/2.caac94ae.chunk.css",
@@ -18,6 +18,6 @@
     "static/css/2.caac94ae.chunk.css",
     "static/js/2.6609c23b.chunk.js",
     "static/css/main.47ae0789.chunk.css",
-    "static/js/main.8a25b618.chunk.js"
+    "static/js/main.f9e9bc73.chunk.js"
   ]
 }
