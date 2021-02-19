@@ -52,7 +52,8 @@ export const textToSpeech = (
   textToSpeechToken,
   text,
   voice,
-  accept
+  accept,
+  element
 ) => {
   return synthesize({
     url: textToSpeechUrl,
@@ -60,6 +61,7 @@ export const textToSpeech = (
     text,
     voice,
     accept,
+    element,
   });
 };
 
@@ -103,11 +105,11 @@ export const messageAssistant = async (
     res = await res.json();
     console.log(res);
     res =
-      '<speak version="1.0">' +
+      '<speak version="1.0"><prosody rate="+15%">' +
       res.output.generic
         .map((obj) => obj.text)
         .join(' <break strength="medium"></break>') +
-      '</speak>';
+      '</prosody></speak>';
   } catch (err) {
     console.log(err);
   }
@@ -116,5 +118,10 @@ export const messageAssistant = async (
 
 export const stripSSMLTags = (str) => {
   const regex = /(<([^>]+)>)/gi;
-  return str.replace(regex, '');
+  try {
+    str = str.replace(regex, '');
+  } catch (err) {
+    console.log(err);
+  }
+  return str;
 };

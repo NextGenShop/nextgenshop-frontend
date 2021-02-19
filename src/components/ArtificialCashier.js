@@ -119,6 +119,7 @@ function ArtificialCashier({
   ]);
 
   const startListening = async () => {
+    stopAudio();
     setListening(true);
     const stream = await captureAudioFromMicrophone(
       speechToTextUrl,
@@ -136,7 +137,6 @@ function ArtificialCashier({
           assistantSessionId,
           speechText
         );
-        setResponseText(stripSSMLTags(res));
         if (res) {
           await synthesizeTextToSpeech(res);
         }
@@ -164,17 +164,32 @@ function ArtificialCashier({
     if (!voice) voice = testVoices[0];
     try {
       const accept = getSupportedAudioFormat(audioRef);
-      const audio = textToSpeech(
+      const audio = await textToSpeech(
         textToSpeechUrl,
         textToSpeechToken,
         text,
         voice,
-        accept
+        accept,
+        audioRef.current
       );
-      audioRef.current.setAttribute('src', audio.src);
+      audio.play();
+      audio.addEventListener('playing', () => {
+        console.log('AUDIO PLAYING!');
+        setResponseText(stripSSMLTags(text));
+      });
+      audio.addEventListener('ended', () => {
+        console.log('AUDIO STOPPED PLAYING!');
+        setResponseText('');
+      });
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const stopAudio = () => {
+    setResponseText('');
+    audioRef.current.pause();
+    audioRef.current.currentTime = 0;
   };
 
   const ListenButton = listening ? (
