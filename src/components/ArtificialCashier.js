@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import StopIcon from '@material-ui/icons/StopOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import MicRoundedIcon from '@material-ui/icons/MicRounded';
-import VoiceIcon from '@material-ui/icons/RecordVoiceOver';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 import { actions } from '../store/api/tokens';
@@ -14,8 +14,8 @@ import {
   textToSpeech,
   createAssistantSession,
   messageAssistant,
+  stripSSMLTags,
 } from '../utils/speechUtils';
-import { ListItemAvatar } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -136,7 +136,7 @@ function ArtificialCashier({
           assistantSessionId,
           speechText
         );
-        setResponseText(res);
+        setResponseText(stripSSMLTags(res));
         if (res) {
           await synthesizeTextToSpeech(res);
         }
@@ -218,7 +218,12 @@ function ArtificialCashier({
             {ListenButton}
           </React.Fragment>
         ) : (
-          <Typography variant='subtitle2'>Loading... Please wait</Typography>
+          <React.Fragment>
+            <Typography variant='subtitle2' gutterBottom>
+              Loading... Please wait
+            </Typography>
+            <CircularProgress size={30} />
+          </React.Fragment>
         )}
       </div>
     </Paper>

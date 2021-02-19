@@ -102,9 +102,19 @@ export const messageAssistant = async (
     );
     res = await res.json();
     console.log(res);
-    res = res.output.generic.map((obj) => obj.text).join(' ');
+    res =
+      '<speak version="1.0">' +
+      res.output.generic
+        .map((obj) => obj.text)
+        .join(' <break strength="medium"></break>') +
+      '</speak>';
   } catch (err) {
     console.log(err);
   }
   return res;
+};
+
+export const stripSSMLTags = (str) => {
+  const regex = /(<([^>]+)>)/gi;
+  return str.replace(regex, '');
 };
