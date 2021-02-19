@@ -12,7 +12,10 @@ import {
   getSupportedAudioFormat,
   captureAudioFromMicrophone,
   textToSpeech,
+  createAssistantSession,
+  messageAssistant,
 } from '../utils/speechUtils';
+import { ListItemAvatar } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -28,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  bold: {
+    fontWeight: 'bold',
+  },
 }));
 
 function ArtificialCashier({
@@ -35,14 +41,19 @@ function ArtificialCashier({
   speechToTextUrl,
   textToSpeechToken,
   textToSpeechUrl,
-  dispatchGetSpeechToTextTokens,
-  dispatchGetTextToSpeechTokens,
+  assistantToken,
+  assistantUrl,
+  dispatchGetSpeechToTextToken,
+  dispatchGetTextToSpeechToken,
+  dispatchGetAssistantToken,
 }) {
   const classes = useStyles();
   const [loaded, setLoaded] = React.useState(false);
   const [listening, setListening] = React.useState(false);
   const [stream, setStream] = React.useState(null);
+  const [speechText, setSpeechText] = React.useState('');
   const [responseText, setResponseText] = React.useState('');
+  const [assistantSessionId, setAssistantSessionId] = React.useState(null);
   const audioRef = React.useRef(null);
 
   const testVoices = [
@@ -54,27 +65,57 @@ function ArtificialCashier({
 
   React.useEffect(() => {
     if (!speechToTextToken || !speechToTextUrl) {
-      dispatchGetSpeechToTextTokens();
+      dispatchGetSpeechToTextToken();
     }
     if (!textToSpeechToken || !textToSpeechUrl) {
-      dispatchGetTextToSpeechTokens();
+      dispatchGetTextToSpeechToken();
     }
-    if (
-      !!speechToTextToken &&
-      !!speechToTextUrl &&
-      !!textToSpeechToken &&
-      !!textToSpeechUrl
-    ) {
-      console.log('Done loading tokens from API');
-      setLoaded(true);
+    if (!assistantToken || !assistantUrl) {
+      dispatchGetAssistantToken();
     }
   }, [
-    dispatchGetSpeechToTextTokens,
-    dispatchGetTextToSpeechTokens,
+    dispatchGetSpeechToTextToken,
+    dispatchGetTextToSpeechToken,
+    dispatchGetAssistantToken,
     speechToTextToken,
     speechToTextUrl,
     textToSpeechToken,
     textToSpeechUrl,
+    assistantToken,
+    assistantUrl,
+  ]);
+
+  React.useEffect(() => {
+    async function createSession() {
+      const instanceId = await createAssistantSession(
+        assistantUrl,
+        assistantToken
+      );
+      setAssistantSessionId(instanceId);
+      setLoaded(true);
+      console.log('Done loading tokens from API.');
+      console.log('Created assistant session: ' + instanceId);
+    }
+
+    if (
+      !!speechToTextToken &&
+      !!speechToTextUrl &&
+      !!textToSpeechToken &&
+      !!textToSpeechUrl &&
+      !!assistantToken &&
+      !!assistantUrl &&
+      !assistantSessionId
+    ) {
+      createSession();
+    }
+  }, [
+    assistantToken,
+    assistantUrl,
+    speechToTextToken,
+    speechToTextUrl,
+    textToSpeechToken,
+    textToSpeechUrl,
+    assistantSessionId,
   ]);
 
   const startListening = async () => {
@@ -83,29 +124,41 @@ function ArtificialCashier({
       speechToTextUrl,
       speechToTextToken
     );
-    stream.on('data', (data) => {
+    stream.on('data', async (data) => {
       if (data && data.final) {
-        setResponseText(data.alternatives[0].transcript);
+        const speechText = data.alternatives[0].transcript;
+        setSpeechText(speechText);
+        setListening(false);
+
+        const res = await messageAssistant(
+          assistantUrl,
+          assistantToken,
+          assistantSessionId,
+          speechText
+        );
+        setResponseText(res);
+        if (res) {
+          await synthesizeTextToSpeech(res);
+        }
       }
     });
     stream.on('error', function (err) {
       console.log(err);
-      stopListening();
+      setListening(false);
     });
     stream.on('end', function () {
       console.log('stream ended');
-      stopListening();
+      setListening(false);
     });
     setStream(stream);
   };
 
-  const stopListening = () => {
-    setListening(false);
-    if (stream) {
+  React.useEffect(() => {
+    if (!listening && stream !== null) {
       stream.stop();
       setStream(null);
     }
-  };
+  }, [listening, stream]);
 
   const synthesizeTextToSpeech = async (text, voice) => {
     if (!voice) voice = testVoices[0];
@@ -119,20 +172,17 @@ function ArtificialCashier({
         accept
       );
       audioRef.current.setAttribute('src', audio.src);
-      await audioRef.current.play();
     } catch (err) {
       console.log(err);
     }
   };
 
-  const AudioOutput = () => (
-    <audio ref={audioRef}>
-      Your browser does not support the <code>audio</code> element.
-    </audio>
-  );
-
   const ListenButton = listening ? (
-    <IconButton color='secondary' aria-label='stop' onClick={stopListening}>
+    <IconButton
+      color='secondary'
+      aria-label='stop'
+      onClick={() => setListening(false)}
+    >
       <StopIcon fontSize='large' />
     </IconButton>
   ) : (
@@ -143,27 +193,29 @@ function ArtificialCashier({
 
   return (
     <Paper className={classes.paper}>
+      <audio ref={audioRef}>
+        Your browser does not support the <code>audio</code> element.
+      </audio>
       <div className={classes.inner}>
-        <Typography variant='h3'>{responseText}</Typography>
+        {speechText && (
+          <Typography variant='h6'>
+            <span className={classes.bold}>Speech:</span> {speechText}
+          </Typography>
+        )}
+        {responseText && (
+          <Typography variant='h6'>
+            <span className={classes.bold}>Response:</span> {responseText}
+          </Typography>
+        )}
         {loaded ? (
           <React.Fragment>
+            <br />
             <Typography variant='subtitle2'>
               {listening
                 ? 'Listening...'
                 : 'Press the mic icon and start speaking'}
             </Typography>
             {ListenButton}
-
-            <IconButton
-              color='primary'
-              aria-label='speak'
-              onClick={() =>
-                synthesizeTextToSpeech('Hello, i am your artificial cashier')
-              }
-            >
-              <VoiceIcon fontSize='large' />
-            </IconButton>
-            {AudioOutput}
           </React.Fragment>
         ) : (
           <Typography variant='subtitle2'>Loading... Please wait</Typography>
@@ -178,11 +230,14 @@ const mapStateToProps = (state) => ({
   speechToTextUrl: state.tokens.speechToTextUrl,
   textToSpeechToken: state.tokens.textToSpeechToken,
   textToSpeechUrl: state.tokens.textToSpeechUrl,
+  assistantToken: state.tokens.assistantToken,
+  assistantUrl: state.tokens.assistantUrl,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchGetSpeechToTextTokens: () => dispatch(actions.getSpeechToTextToken()),
-  dispatchGetTextToSpeechTokens: () => dispatch(actions.getTextToSpeechToken()),
+  dispatchGetSpeechToTextToken: () => dispatch(actions.getSpeechToTextToken()),
+  dispatchGetTextToSpeechToken: () => dispatch(actions.getTextToSpeechToken()),
+  dispatchGetAssistantToken: () => dispatch(actions.getAssistantToken()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArtificialCashier);

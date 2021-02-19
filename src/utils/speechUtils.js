@@ -66,13 +66,14 @@ export const textToSpeech = (
 export const createAssistantSession = async (assistantUrl, assistantToken) => {
   let session;
   try {
-    session = await fetch(`${assistantUrl}/sessions?version=2020-04-01`, {
+    const res = await fetch(`${assistantUrl}/sessions?version=2020-04-01`, {
       method: 'post',
       headers: new Headers({
         Authorization: 'Bearer ' + assistantToken,
         'Content-Type': 'application/json',
       }),
     });
+    session = await res.json();
   } catch (err) {
     console.log(err);
   }
@@ -85,18 +86,25 @@ export const messageAssistant = async (
   sessionId,
   message
 ) => {
-  let response;
+  let res;
   try {
-    response = await fetch(`${assistantUrl}/sessions/${sessionId}/message`, {
-      method: 'post',
-      headers: new Headers({
-        Authorization: 'Bearer ' + assistantToken,
-        'Content-Type': 'application/json',
-      }),
-      body: { input: { text: message } },
-    });
+    res = await fetch(
+      `${assistantUrl}/sessions/${sessionId}/message?version=2020-04-01`,
+      {
+        method: 'post',
+        headers: new Headers({
+          Authorization: 'Bearer ' + assistantToken,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({ input: { text: message } }),
+      }
+    );
+    res = await res.json();
+    console.log(res);
+    res = res.output.generic.map((obj) => obj.text).join(' ');
   } catch (err) {
     console.log(err);
   }
-  return response ? response.output.generic[0].text : null;
+  return res;
 };
