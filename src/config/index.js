@@ -4,7 +4,7 @@ const prod = {
 };
 
 const dev = {
-  API_URL: 'https://nextgenshop.pythonanywhere.com',
+  API_URL: 'http://127.0.0.1:8000',
 };
 
 const shared = {
