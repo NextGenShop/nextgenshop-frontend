@@ -1,13 +1,13 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import StopIcon from '@material-ui/icons/StopOutlined';
-import IconButton from '@material-ui/core/IconButton';
-import MicRoundedIcon from '@material-ui/icons/MicRounded';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Typography from '@material-ui/core/Typography';
-import { connect } from 'react-redux';
-import { actions } from '../store/api/tokens';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import StopIcon from "@material-ui/icons/StopOutlined";
+import IconButton from "@material-ui/core/IconButton";
+import MicRoundedIcon from "@material-ui/icons/MicRounded";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Typography from "@material-ui/core/Typography";
+import { connect } from "react-redux";
+import { actions } from "../store/api/tokens";
 import {
   getSupportedAudioFormat,
   captureAudioFromMicrophone,
@@ -15,25 +15,30 @@ import {
   createAssistantSession,
   messageAssistant,
   stripSSMLTags,
-} from '../utils/speechUtils';
-import AvatarModel from '../assets/models/Avatar.glb';
+} from "../utils/speechUtils";
+import AvatarModel from "../assets/models/Avatar.glb";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    display: 'flex',
+    display: "flex",
     color: theme.palette.text.secondary,
-    background: '#eeeeee',
-    height: '75vh',
-    alignItems: 'center',
-    justifyContent: 'center',
+    background: "#eeeeee",
+    height: "75vh",
+    alignItems: "center",
+    justifyContent: "center",
   },
   inner: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   bold: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
+  },
+  transcript: {
+    wordWrap: "break-word",
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
   },
 }));
 
@@ -51,16 +56,17 @@ function ArtificialCashier({
   const classes = useStyles();
   const [loaded, setLoaded] = React.useState(false);
   const [listening, setListening] = React.useState(false);
+  const [responding, setResponding] = React.useState(false);
   const [stream, setStream] = React.useState(null);
-  const [speechText, setSpeechText] = React.useState('');
-  const [responseText, setResponseText] = React.useState('');
+  const [speechText, setSpeechText] = React.useState("");
+  const [responseText, setResponseText] = React.useState("");
   const [assistantSessionId, setAssistantSessionId] = React.useState(null);
   const audioRef = React.useRef(null);
 
   const testVoices = [
-    'en-GB_JamesV3Voice',
-    'en-GB_KateV3Voice',
-    'en-GB_CharlotteV3Voice',
+    "en-GB_JamesV3Voice",
+    "en-GB_KateV3Voice",
+    "en-GB_CharlotteV3Voice",
   ];
   //ref: https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices
 
@@ -94,8 +100,8 @@ function ArtificialCashier({
       );
       setAssistantSessionId(instanceId);
       setLoaded(true);
-      console.log('Done loading tokens from API.');
-      console.log('Created assistant session: ' + instanceId);
+      console.log("Done loading tokens from API.");
+      console.log("Created assistant session: " + instanceId);
     }
 
     if (!!assistantToken && !!assistantUrl && !assistantSessionId) {
@@ -110,7 +116,7 @@ function ArtificialCashier({
       speechToTextUrl,
       speechToTextToken
     );
-    stream.on('data', async (data) => {
+    stream.on("data", async (data) => {
       if (data && data.final) {
         const speechText = data.alternatives[0].transcript;
         setSpeechText(speechText);
@@ -127,12 +133,12 @@ function ArtificialCashier({
         }
       }
     });
-    stream.on('error', function (err) {
+    stream.on("error", function (err) {
       console.log(err);
       setListening(false);
     });
-    stream.on('end', function () {
-      console.log('stream ended');
+    stream.on("end", function () {
+      console.log("stream ended");
       setListening(false);
     });
     setStream(stream);
@@ -149,7 +155,7 @@ function ArtificialCashier({
     if (!voice) voice = testVoices[0];
     try {
       const accept = getSupportedAudioFormat(audioRef);
-      const audio = textToSpeech(
+      const audio = await textToSpeech(
         textToSpeechUrl,
         textToSpeechToken,
         text,
@@ -157,14 +163,15 @@ function ArtificialCashier({
         accept,
         audioRef.current
       );
-      audio.play();
-      audio.addEventListener('playing', () => {
-        console.log('AUDIO PLAYING!');
+      audio.addEventListener("playing", () => {
+        console.log("AUDIO PLAYING!");
+        setResponding(true);
         setResponseText(stripSSMLTags(text));
       });
-      audio.addEventListener('ended', () => {
-        console.log('AUDIO STOPPED PLAYING!');
-        setResponseText('');
+      audio.addEventListener("ended", () => {
+        console.log("AUDIO STOPPED PLAYING!");
+        setResponding(false);
+        setResponseText("");
       });
     } catch (err) {
       console.log(err);
@@ -172,22 +179,22 @@ function ArtificialCashier({
   };
 
   const stopAudio = () => {
-    setResponseText('');
+    setResponseText("");
     audioRef.current.pause();
     audioRef.current.currentTime = 0;
   };
 
   const ListenButton = listening ? (
     <IconButton
-      color='secondary'
-      aria-label='stop'
+      color="secondary"
+      aria-label="stop"
       onClick={() => setListening(false)}
     >
-      <StopIcon fontSize='large' />
+      <StopIcon fontSize="large" />
     </IconButton>
   ) : (
-    <IconButton color='primary' aria-label='speak' onClick={startListening}>
-      <MicRoundedIcon fontSize='large' />
+    <IconButton color="primary" aria-label="speak" onClick={startListening}>
+      <MicRoundedIcon fontSize="large" />
     </IconButton>
   );
 
@@ -197,36 +204,36 @@ function ArtificialCashier({
         Your browser does not support the <code>audio</code> element.
       </audio>
       <div className={classes.inner}>
-        {speechText && (
-          <Typography variant='h6'>
-            <span className={classes.bold}>Speech:</span> {speechText}
-          </Typography>
-        )}
-        {responseText && (
-          <Typography variant='h6'>
-            <span className={classes.bold}>Response:</span> {responseText}
-          </Typography>
-        )}
         {loaded ? (
           <React.Fragment>
+            {/* {speechText && (
+              <Typography variant="h6">
+                <span className={classes.bold}>Speech:</span> {speechText}
+              </Typography>
+            )} */}
             <model-viewer
               autoplay
-              animation-name={responseText ? 'Talking' : 'Idle'}
+              loading="eager"
+              animation-name={responding ? "Talking" : "Idle"}
+              style={{ width: "350px", height: "350px" }}
               src={AvatarModel}
-              background-color='#455A64'
-              style={{ height: '450px', width: '450px' }}
             ></model-viewer>
+            {responseText && (
+              <Typography className={classes.transcript} variant="h6">
+                {responseText}
+              </Typography>
+            )}
             <br />
-            <Typography variant='subtitle2'>
+            <Typography variant="subtitle2">
               {listening
-                ? 'Listening...'
-                : 'Press the mic icon and start speaking'}
+                ? "Listening..."
+                : "Press the mic icon and start speaking"}
             </Typography>
             {ListenButton}
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <Typography variant='subtitle2' gutterBottom>
+            <Typography variant="subtitle2" gutterBottom>
               Loading... Please wait
             </Typography>
             <CircularProgress size={30} />
