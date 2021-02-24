@@ -24,7 +24,8 @@ const useStyles = makeStyles((theme) => ({
 function ShopperPage({ authUser }) {
   const classes = useStyles();
   const [searchQuery, setSearchQuery] = React.useState("");
-  const [retailer, setRetailer] = React.useState(mockRetailers[0].name);
+  const retailer = mockRetailers[0].name;
+  // const [retailer, setRetailer] = React.useState(mockRetailers[0].name);
 
   return (
     <Container maxWidth="xl" className={classes.root}>
@@ -42,7 +43,7 @@ function ShopperPage({ authUser }) {
         </Grid>
         <Grid item xs={6}>
           <Grid container spacing={3}>
-            <Grid item xs={6}>
+            <Grid item xs={12}>
               <ProductSearchBox
                 value={searchQuery}
                 onChange={(e) => {
@@ -50,14 +51,14 @@ function ShopperPage({ authUser }) {
                 }}
               />
             </Grid>
-            <Grid item xs={6}>
+            {/* <Grid item xs={6}>
               <RetailerSelect
                 value={retailer}
                 onChange={(event, newValue) => {
                   setRetailer(newValue);
                 }}
               />
-            </Grid>
+            </Grid> */}
           </Grid>
           <ProductCatalog
             retailer={retailer}
