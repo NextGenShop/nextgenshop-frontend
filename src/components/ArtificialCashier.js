@@ -16,6 +16,7 @@ import {
   messageAssistant,
   stripSSMLTags,
 } from '../utils/speechUtils';
+import AvatarModel from '../assets/models/Avatar.glb';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -97,26 +98,10 @@ function ArtificialCashier({
       console.log('Created assistant session: ' + instanceId);
     }
 
-    if (
-      !!speechToTextToken &&
-      !!speechToTextUrl &&
-      !!textToSpeechToken &&
-      !!textToSpeechUrl &&
-      !!assistantToken &&
-      !!assistantUrl &&
-      !assistantSessionId
-    ) {
+    if (!!assistantToken && !!assistantUrl && !assistantSessionId) {
       createSession();
     }
-  }, [
-    assistantToken,
-    assistantUrl,
-    speechToTextToken,
-    speechToTextUrl,
-    textToSpeechToken,
-    textToSpeechUrl,
-    assistantSessionId,
-  ]);
+  }, [assistantToken, assistantUrl, assistantSessionId]);
 
   const startListening = async () => {
     stopAudio();
@@ -164,7 +149,7 @@ function ArtificialCashier({
     if (!voice) voice = testVoices[0];
     try {
       const accept = getSupportedAudioFormat(audioRef);
-      const audio = await textToSpeech(
+      const audio = textToSpeech(
         textToSpeechUrl,
         textToSpeechToken,
         text,
@@ -224,6 +209,13 @@ function ArtificialCashier({
         )}
         {loaded ? (
           <React.Fragment>
+            <model-viewer
+              autoplay
+              animation-name={responseText ? 'Talking' : 'Idle'}
+              src={AvatarModel}
+              background-color='#455A64'
+              style={{ height: '450px', width: '450px' }}
+            ></model-viewer>
             <br />
             <Typography variant='subtitle2'>
               {listening

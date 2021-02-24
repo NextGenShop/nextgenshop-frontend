@@ -47,7 +47,7 @@ export const captureAudioFromMicrophone = async (
   return recognizeMicrophoneStream;
 };
 
-export const textToSpeech = (
+export const textToSpeech = async (
   textToSpeechUrl,
   textToSpeechToken,
   text,
