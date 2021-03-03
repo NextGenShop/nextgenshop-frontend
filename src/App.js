@@ -6,16 +6,28 @@ import CashierVideoQueue from "./views/cashier/CashierVideoQueue";
 import ShopperVideoQueue from "./views/shopper/ShopperVideoQueue";
 import ReduxToastr from "react-redux-toastr";
 import { ReactKeycloakProvider } from '@react-keycloak/web';
-import keycloak from './keycloak'
+import keycloak from './keycloak';
 import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
 
 const initOptions = {
-  onLoad: 'login-required'
+  onLoad: "login-required"
+}
+
+const onEvent = (event, error) => {
+  // console.log('onKeycloakEvent', event, error);
+}
+
+const onTokens = (tokens) => {
+  // console.log('onTokens', tokens);
 }
 
 function App() {
   return (
-    <ReactKeycloakProvider authClient={keycloak} initOptions={initOptions}>
+    <ReactKeycloakProvider
+      authClient={keycloak}
+      initOptions={initOptions}
+      onEvent={onEvent}
+      onTokens={onTokens}>
       <React.Fragment>
         <Router basename="/nextgenshop-frontend">
           <Switch>
