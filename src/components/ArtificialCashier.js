@@ -129,6 +129,7 @@ function ArtificialCashier({
       if (data && data.final) {
         const speechText = data.alternatives[0].transcript;
         setSpeechText(speechText);
+        console.log(speechText);
         setListening(false);
 
         const res = await messageAssistant(

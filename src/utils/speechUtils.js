@@ -110,7 +110,7 @@ export const messageAssistant = async (
       res.output.generic
         .reduce((acc, obj) => {
           if (obj.response_type === "text") {
-            acc.push(obj.text);
+            acc.push(obj.text.trim());
           }
           return acc;
         }, [])
