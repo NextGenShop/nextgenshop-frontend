@@ -1,6 +1,6 @@
 [
   {
-    "userId": 0,
+    "userId": 1,
     "fullName": "Mock User 1",
     "email": "mockuser1@gmail.com",
     "password": "password",
@@ -8,7 +8,7 @@
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTW9jayBVc2VyIDEifQ.CnOm194RXYztVQnGS6viXczUdfzZxDEVzF3UxAEsT8o"
   },
   {
-    "userId": 1,
+    "userId": 0,
     "fullName": "Mock Cashier User",
     "email": "mockcashieruser@gmail.com",
     "password": "password",

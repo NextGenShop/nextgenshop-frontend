@@ -8,6 +8,8 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import { actions } from "../store/api/tokens";
+import { actions as basketActions } from "../store/api/basket";
+import { actions as productActions } from "../store/api/product";
 import {
   getSupportedAudioFormat,
   captureAudioFromMicrophone,
@@ -16,6 +18,7 @@ import {
   messageAssistant,
   stripSSMLTags,
 } from "../utils/speechUtils";
+import { addBasketItem } from "../utils/basketUtils";
 import AvatarModel from "../assets/models/Avatar.glb";
 
 const useStyles = makeStyles((theme) => ({
@@ -43,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ArtificialCashier({
+  authUser,
+  basket,
+  products,
   speechToTextToken,
   speechToTextUrl,
   textToSpeechToken,
@@ -52,6 +58,8 @@ function ArtificialCashier({
   dispatchGetSpeechToTextToken,
   dispatchGetTextToSpeechToken,
   dispatchGetAssistantToken,
+  dispatchUpdateBasket,
+  dispatchGetProducts,
 }) {
   const classes = useStyles();
   const [loaded, setLoaded] = React.useState(false);
@@ -128,8 +136,13 @@ function ArtificialCashier({
           assistantSessionId,
           speechText
         );
-        if (res) {
-          await synthesizeTextToSpeech(res);
+
+        if (res.action) {
+          handleAssistantAction(res.action);
+        }
+
+        if (res.speech) {
+          await synthesizeTextToSpeech(res.speech);
         }
       }
     });
@@ -151,6 +164,35 @@ function ArtificialCashier({
     }
   }, [listening, stream]);
 
+  const handleAssistantAction = (action) => {
+    switch (action.action_type) {
+      case "add_basket":
+        const product = products.find(
+          (p) => p.productId === parseInt(action.product_id)
+        );
+        if (product) {
+          const newBasket = addBasketItem(product, basket, action.quantity);
+          console.log(newBasket);
+          dispatchUpdateBasket(authUser.userId, newBasket);
+        }
+        break;
+      case "filter_product":
+        if (action.product_query_string) {
+          dispatchGetProducts(action.product_query_string, "Mock Retailer", 3);
+        }
+        break;
+      case "reset_context":
+        resetProductCatalog();
+        break;
+      default:
+        break;
+    }
+  };
+
+  const resetProductCatalog = () => {
+    dispatchGetProducts(null, "Mock Retailer", 9);
+  };
+
   const synthesizeTextToSpeech = async (text, voice) => {
     if (!voice) voice = testVoices[0];
     try {
@@ -171,7 +213,6 @@ function ArtificialCashier({
       audio.addEventListener("ended", () => {
         console.log("AUDIO STOPPED PLAYING!");
         setResponding(false);
-        setResponseText("");
       });
     } catch (err) {
       console.log(err);
@@ -251,12 +292,19 @@ const mapStateToProps = (state) => ({
   textToSpeechUrl: state.tokens.textToSpeechUrl,
   assistantToken: state.tokens.assistantToken,
   assistantUrl: state.tokens.assistantUrl,
+  basket: state.basket,
+  authUser: state.auth.user,
+  products: state.product.products,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   dispatchGetSpeechToTextToken: () => dispatch(actions.getSpeechToTextToken()),
   dispatchGetTextToSpeechToken: () => dispatch(actions.getTextToSpeechToken()),
   dispatchGetAssistantToken: () => dispatch(actions.getAssistantToken()),
+  dispatchUpdateBasket: (shopperId, basketData) =>
+    dispatch(basketActions.updateBasket(shopperId, basketData)),
+  dispatchGetProducts: (query, retailer, limit) =>
+    dispatch(productActions.getProducts(query, retailer, limit)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArtificialCashier);

@@ -6,17 +6,19 @@ const calcTotalPrice = (items) => {
   return totalPrice;
 };
 
-const addBasketItem = (product, basket) => {
+const addBasketItem = (product, basket, quantity = 1) => {
   let newItems = [];
-  const foundItem = basket.items.find((item) => item.product.productId === product.productId);
+  const foundItem = basket.items.find(
+    (item) => item.product.productId === product.productId
+  );
   if (foundItem) {
     newItems = basket.items.map((item) =>
       item.product.productId === foundItem.product.productId
-        ? { ...item, quantity: item.quantity + 1 }
+        ? { ...item, quantity: item.quantity + quantity }
         : item
     );
   } else {
-    newItems = [...basket.items, { product, quantity: 1 }];
+    newItems = [...basket.items, { product, quantity }];
   }
   return { items: newItems };
 };

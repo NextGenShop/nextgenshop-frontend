@@ -5,10 +5,8 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import ProductCatalog from "../../components/ProductCatalog";
 import ProductSearchBox from "../../components/ProductSearchBox";
-import RetailerSelect from "../../components/RetailerSelect";
 import ArtificialCashier from "../../components/ArtificialCashier";
 import Basket from "../../components/Basket";
-import mockRetailers from "../../store/mock/MockRetailers.json";
 import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
@@ -24,8 +22,6 @@ const useStyles = makeStyles((theme) => ({
 function ShopperPage({ authUser }) {
   const classes = useStyles();
   const [searchQuery, setSearchQuery] = React.useState("");
-  const retailer = mockRetailers[0].name;
-  // const [retailer, setRetailer] = React.useState(mockRetailers[0].name);
 
   return (
     <Container maxWidth="xl" className={classes.root}>
@@ -51,17 +47,9 @@ function ShopperPage({ authUser }) {
                 }}
               />
             </Grid>
-            {/* <Grid item xs={6}>
-              <RetailerSelect
-                value={retailer}
-                onChange={(event, newValue) => {
-                  setRetailer(newValue);
-                }}
-              />
-            </Grid> */}
           </Grid>
           <ProductCatalog
-            retailer={retailer}
+            retailer="Mock Retailer"
             searchQuery={searchQuery}
             limit={9}
             shopperId={authUser.userId}
