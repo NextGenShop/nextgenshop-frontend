@@ -193,6 +193,16 @@ function ArtificialCashier({
     dispatchGetProducts(null, "Mock Retailer", 9);
   };
 
+  const handleAudioPlayingEvent = () => {
+    console.log("AUDIO PLAYING!");
+    setResponding(true);
+  };
+
+  const handleAudioEndedEvent = () => {
+    console.log("AUDIO STOPPED PLAYING!");
+    setResponding(false);
+  };
+
   const synthesizeTextToSpeech = async (text, voice) => {
     if (!voice) voice = testVoices[0];
     try {
@@ -205,15 +215,11 @@ function ArtificialCashier({
         accept,
         audioRef.current
       );
-      audio.addEventListener("playing", () => {
-        console.log("AUDIO PLAYING!");
-        setResponding(true);
-        setResponseText(stripSSMLTags(text));
-      });
-      audio.addEventListener("ended", () => {
-        console.log("AUDIO STOPPED PLAYING!");
-        setResponding(false);
-      });
+      setResponseText(stripSSMLTags(text));
+      audio.removeEventListener("playing", handleAudioPlayingEvent);
+      audio.removeEventListener("ended", handleAudioEndedEvent);
+      audio.addEventListener("playing", handleAudioPlayingEvent);
+      audio.addEventListener("ended", handleAudioEndedEvent);
     } catch (err) {
       console.log(err);
     }
