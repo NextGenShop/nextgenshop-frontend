@@ -26,11 +26,7 @@ const addBasketItem = (product, basket, quantity = 1) => {
 const removeBasketItem = (productId, basket) => {
   let newItems = basket.items.map((item) => {
     if (item.product.productId === productId) {
-      if (item.quantity <= 1) {
-        return null;
-      } else {
-        return { ...item, quantity: item.quantity - 1 };
-      }
+      return null;
     }
     return item;
   });
