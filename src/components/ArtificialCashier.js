@@ -20,6 +20,7 @@ import {
 } from "../utils/speechUtils";
 import { addBasketItem } from "../utils/basketUtils";
 import AvatarModel from "../assets/models/Avatar.glb";
+import { displayToast } from "../utils/displayToast";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -172,13 +173,18 @@ function ArtificialCashier({
         );
         if (product) {
           const newBasket = addBasketItem(product, basket, action.quantity);
-          console.log(newBasket);
           dispatchUpdateBasket(authUser.userId, newBasket);
+          displayToast("", "Your shopping basket has been updated", "success");
         }
         break;
       case "filter_product":
         if (action.product_query_string) {
           dispatchGetProducts(action.product_query_string, "Mock Retailer", 3);
+          displayToast(
+            "",
+            "The product catalogue has been updated to match your query",
+            "info"
+          );
         }
         break;
       case "reset_context":
