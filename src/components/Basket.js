@@ -53,7 +53,13 @@ function Basket({
           basket.items.map((item) => (
             <ListItem key={item.product.productId}>
               <ListItemAvatar>
-                <Avatar src={PlaceholderImage} />
+                <Avatar
+                  src={
+                    item.product.image === "mockImageUrl"
+                      ? PlaceholderImage
+                      : item.product.image
+                  }
+                />
               </ListItemAvatar>
               <ListItemText
                 primary={item.product.name}

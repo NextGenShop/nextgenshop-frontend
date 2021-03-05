@@ -20,6 +20,7 @@ import {
 } from "../utils/speechUtils";
 import { addBasketItem } from "../utils/basketUtils";
 import AvatarModel from "../assets/models/Avatar.glb";
+import AvatarV2Model from "../assets/models/AvatarV2.glb";
 import { displayToast } from "../utils/displayToast";
 
 const useStyles = makeStyles((theme) => ({
@@ -260,17 +261,12 @@ function ArtificialCashier({
       <div className={classes.inner}>
         {loaded ? (
           <React.Fragment>
-            {/* {speechText && (
-              <Typography variant="h6">
-                <span className={classes.bold}>Speech:</span> {speechText}
-              </Typography>
-            )} */}
             <model-viewer
               autoplay
               loading="eager"
               animation-name={responding ? "Talking" : "Idle"}
               style={{ width: "350px", height: "350px" }}
-              src={AvatarModel}
+              src={AvatarV2Model}
             ></model-viewer>
             {responseText && (
               <Typography className={classes.transcript} variant="h6">

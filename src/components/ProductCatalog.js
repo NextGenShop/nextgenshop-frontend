@@ -58,6 +58,9 @@ const useStyles = makeStyles((theme) => ({
   mb: {
     marginBottom: theme.spacing(2),
   },
+  addButton: {
+    width: 20,
+  },
 }));
 
 function ProductCatalog({
@@ -89,7 +92,17 @@ function ProductCatalog({
           {products.map((product) => (
             <TableRow key={product.productId}>
               <Tooltip
-                title={<img alt="product" className={classes.media} src={PlaceholderImage} />}
+                title={
+                  <img
+                    alt="product"
+                    className={classes.media}
+                    src={
+                      product.image === "mockImageUrl"
+                        ? PlaceholderImage
+                        : product.image
+                    }
+                  />
+                }
               >
                 <TableCell component="th" scope="row">
                   {product.name}
@@ -118,7 +131,11 @@ function ProductCatalog({
           <Card className={classes.card}>
             <div className={classes.details}>
               <CardContent className={classes.content}>
-                <Typography className={classes.productText} gutterBottom variant="subtitle2">
+                <Typography
+                  className={classes.productText}
+                  gutterBottom
+                  variant="subtitle2"
+                >
                   {product.name}
                 </Typography>
                 <Typography
@@ -161,16 +178,24 @@ function ProductCatalog({
               </CardContent>
               <div className={classes.buttons}>
                 <Button
+                  className={classes.addButton}
                   variant="contained"
                   size="small"
                   color="primary"
                   onClick={() => addToBasket(product)}
                 >
-                  Add to basket
+                  Add
                 </Button>
               </div>
             </div>
-            <CardMedia className={classes.media} image={PlaceholderImage} />
+            <CardMedia
+              className={classes.media}
+              image={
+                product.image === "mockImageUrl"
+                  ? PlaceholderImage
+                  : product.image
+              }
+            />
           </Card>
         </Grid>
       ))}

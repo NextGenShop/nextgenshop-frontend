@@ -106,16 +106,29 @@ export const messageAssistant = async (
     res = await res.json();
     console.log(res);
     data.speech =
-      '<speak version="1.0"><prosody rate="+15%">' +
+      '<speak version="1.0">' +
       res.output.generic
         .reduce((acc, obj) => {
           if (obj.response_type === "text") {
-            acc.push(obj.text.trim());
+            if (obj.text.includes("[")) {
+              acc.push(
+                '<prosody rate="medium">' +
+                  obj.text
+                    .trim()
+                    .replace(/['"\[\]]+/g, "")
+                    .replace(/,/g, ", ") +
+                  "</prosody>"
+              );
+            } else {
+              acc.push(
+                '<prosody rate="+15%">' + obj.text.trim() + "</prosody>"
+              );
+            }
           }
           return acc;
         }, [])
         .join(' <break strength="medium"></break>') +
-      "</prosody></speak>";
+      "</speak>";
     const actions = res.output.generic.reduce((acc, obj) => {
       if (obj.response_type === "user_defined") {
         if (obj.user_defined.quantity) {
