@@ -89,7 +89,7 @@ export const messageAssistant = async (
   message
 ) => {
   let res;
-  let data = { speech: "", action: null };
+  let data = { speech: "", actions: null };
   try {
     res = await fetch(
       `${assistantUrl}/sessions/${sessionId}/message?version=2020-04-01`,
@@ -131,16 +131,11 @@ export const messageAssistant = async (
       "</speak>";
     const actions = res.output.generic.reduce((acc, obj) => {
       if (obj.response_type === "user_defined") {
-        if (obj.user_defined.quantity) {
-          obj.user_defined.action_type = "add_basket";
-        } else {
-          obj.user_defined.action_type = "filter_product";
-        }
         acc.push(obj.user_defined);
       }
       return acc;
     }, []);
-    data.action = actions[0];
+    data.actions = actions;
   } catch (err) {
     console.log(err);
   }

@@ -140,8 +140,8 @@ function ArtificialCashier({
           speechText
         );
 
-        if (res.action) {
-          handleAssistantAction(res.action);
+        if (res.actions) {
+          handleAssistantActions(res.actions);
         }
 
         if (res.speech) {
@@ -167,33 +167,45 @@ function ArtificialCashier({
     }
   }, [listening, stream]);
 
-  const handleAssistantAction = (action) => {
-    switch (action.action_type) {
-      case "add_basket":
-        const product = products.find(
-          (p) => p.productId === parseInt(action.product_id)
-        );
-        if (product) {
-          const newBasket = addBasketItem(product, basket, action.quantity);
-          dispatchUpdateBasket(authUser.userId, newBasket);
-          displayToast("", "Your shopping basket has been updated", "success");
+  const handleAssistantActions = (actions) => {
+    if (actions) {
+      for (let action of actions) {
+        switch (action.action_type) {
+          case "add_basket":
+            const product = products.find(
+              (p) => p.productId === parseInt(action.product_id)
+            );
+            if (product) {
+              const newBasket = addBasketItem(product, basket, action.quantity);
+              dispatchUpdateBasket(authUser.userId, newBasket);
+              displayToast(
+                "",
+                "Your shopping basket has been updated",
+                "success"
+              );
+            }
+            break;
+          case "filter_product":
+            if (action.product_query_string) {
+              dispatchGetProducts(
+                action.product_query_string,
+                "Mock Retailer",
+                3
+              );
+              displayToast(
+                "",
+                "The product catalogue has been updated to match your query",
+                "info"
+              );
+            }
+            break;
+          case "reset_context":
+            resetProductCatalog();
+            break;
+          default:
+            break;
         }
-        break;
-      case "filter_product":
-        if (action.product_query_string) {
-          dispatchGetProducts(action.product_query_string, "Mock Retailer", 3);
-          displayToast(
-            "",
-            "The product catalogue has been updated to match your query",
-            "info"
-          );
-        }
-        break;
-      case "reset_context":
-        resetProductCatalog();
-        break;
-      default:
-        break;
+      }
     }
   };
 
