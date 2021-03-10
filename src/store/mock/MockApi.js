@@ -1,12 +1,11 @@
-import mockUsers from './MockUsers.json';
-import mockProducts from './MockSupermarketDataset.json';
-import { calcTotalPrice } from '../../utils/basketUtils';
-import { types as authTypes } from '../api/auth';
-import { types as productTypes } from '../api/product';
-import { types as basketTypes } from '../api/basket';
+import mockUsers from "./MockUsers.json";
+import { calcTotalPrice } from "../../utils/basketUtils";
+import { types as authTypes } from "../api/auth";
+import { types as productTypes } from "../api/product";
+import { types as basketTypes } from "../api/basket";
 
-let mockBasket = localStorage.getItem('basket')
-  ? JSON.parse(localStorage.getItem('basket'))
+let mockBasket = localStorage.getItem("basket")
+  ? JSON.parse(localStorage.getItem("basket"))
   : {
       basketId: 0,
       items: [],
@@ -17,12 +16,12 @@ let mockBasket = localStorage.getItem('basket')
 const handleRequest = (dispatch, name, req) => {
   let res = {};
   if (name === authTypes.GET_USER) {
-    const token = req.headers.authorization.split(' ')[1];
+    const token = req.headers.authorization.split(" ")[1];
     res = mockUsers.find((user) => user.token === token);
     if (res) {
       dispatch({ type: `${name}_SUCCESS`, response: res });
     } else {
-      dispatch({ type: `${name}_FAILURE`, error: 'Invalid token' });
+      dispatch({ type: `${name}_FAILURE`, error: "Invalid token" });
     }
   } else if (name === authTypes.LOGIN) {
     res = mockUsers.find(
@@ -37,7 +36,7 @@ const handleRequest = (dispatch, name, req) => {
     } else {
       dispatch({
         type: `${name}_FAILURE`,
-        error: 'Incorrect email or password',
+        error: "Incorrect email or password",
       });
     }
   } else if (name === authTypes.LOGOUT) {
@@ -59,24 +58,24 @@ const handleRequest = (dispatch, name, req) => {
     //   : products;
     // if (limit) products = products.slice(0, Math.min(limit, products.length));
     // dispatch({ type: `${name}_SUCCESS`, response: products });
-  } else if (name === basketTypes.UPDATE_BASKET) {
-    if (req.data.items) {
-      mockBasket.items = req.data.items;
-    }
-    mockBasket.totalPrice = calcTotalPrice(mockBasket.items);
-    localStorage.setItem('basket', JSON.stringify(mockBasket));
-    dispatch({ type: `${name}_SUCCESS`, response: mockBasket });
-  } else if (name === basketTypes.GET_BASKET) {
-    dispatch({ type: `${name}_SUCCESS`, response: mockBasket });
-  } else if (name === basketTypes.DELETE_BASKET) {
-    mockBasket = {
-      basketId: 0,
-      items: [],
-      totalPrice: 0,
-      shopper: 0,
-    };
-    localStorage.setItem('basket', JSON.stringify(mockBasket));
-    dispatch({ type: `${name}_SUCCESS`, response: mockBasket });
+    // } else if (name === basketTypes.UPDATE_BASKET) {
+    //   if (req.data.items) {
+    //     mockBasket.items = req.data.items;
+    //   }
+    //   mockBasket.totalPrice = calcTotalPrice(mockBasket.items);
+    //   localStorage.setItem("basket", JSON.stringify(mockBasket));
+    //   dispatch({ type: `${name}_SUCCESS`, response: mockBasket });
+    // } else if (name === basketTypes.GET_BASKET) {
+    //   dispatch({ type: `${name}_SUCCESS`, response: mockBasket });
+    // } else if (name === basketTypes.DELETE_BASKET) {
+    //   mockBasket = {
+    //     basketId: 0,
+    //     items: [],
+    //     totalPrice: 0,
+    //     shopper: 0,
+    //   };
+    //   localStorage.setItem("basket", JSON.stringify(mockBasket));
+    //   dispatch({ type: `${name}_SUCCESS`, response: mockBasket });
   } else {
     return false;
   }

@@ -29,12 +29,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Basket({ shopperId, dispatchUpdateBasket, dispatchGetBasket, basket }) {
+function Basket({
+  shopperId,
+  dispatchUpdateBasket,
+  dispatchGetBasket,
+  basket,
+}) {
   const classes = useStyles();
 
   React.useEffect(() => {
-    dispatchGetBasket();
-  }, [dispatchGetBasket]);
+    dispatchGetBasket(shopperId);
+  }, [dispatchGetBasket, shopperId]);
 
   const removeItem = (productId) => {
     const newBasket = removeBasketItem(productId, basket);
@@ -48,9 +53,18 @@ function Basket({ shopperId, dispatchUpdateBasket, dispatchGetBasket, basket }) 
           basket.items.map((item) => (
             <ListItem key={item.product.productId}>
               <ListItemAvatar>
-                <Avatar src={PlaceholderImage} />
+                <Avatar
+                  src={
+                    item.product.image === "mockImageUrl"
+                      ? PlaceholderImage
+                      : item.product.image
+                  }
+                />
               </ListItemAvatar>
-              <ListItemText primary={item.product.name} secondary={"Qty: " + item.quantity} />
+              <ListItemText
+                primary={item.product.name}
+                secondary={"Qty: " + item.quantity}
+              />
               <ListItemSecondaryAction>
                 <Typography className={classes.price} display="inline">
                   £{(item.product.price * item.quantity).toFixed(2)}
@@ -66,7 +80,9 @@ function Basket({ shopperId, dispatchUpdateBasket, dispatchGetBasket, basket }) 
             </ListItem>
           ))
         ) : (
-          <Typography variant="subtitle2">Your shopping basket is empty.</Typography>
+          <Typography variant="subtitle2">
+            Your shopping basket is empty.
+          </Typography>
         )}
       </List>
       <Typography className={classes.total} variant="h6" component="div">

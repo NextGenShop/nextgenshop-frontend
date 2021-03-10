@@ -8,6 +8,8 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import { actions } from "../store/api/tokens";
+import { actions as basketActions } from "../store/api/basket";
+import { actions as productActions } from "../store/api/product";
 import {
   getSupportedAudioFormat,
   captureAudioFromMicrophone,
@@ -16,7 +18,10 @@ import {
   messageAssistant,
   stripSSMLTags,
 } from "../utils/speechUtils";
+import { addBasketItem } from "../utils/basketUtils";
 import AvatarModel from "../assets/models/Avatar.glb";
+import AvatarV2Model from "../assets/models/AvatarV2.glb";
+import { displayToast } from "../utils/displayToast";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -43,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ArtificialCashier({
+  authUser,
+  basket,
+  products,
   speechToTextToken,
   speechToTextUrl,
   textToSpeechToken,
@@ -52,6 +60,8 @@ function ArtificialCashier({
   dispatchGetSpeechToTextToken,
   dispatchGetTextToSpeechToken,
   dispatchGetAssistantToken,
+  dispatchUpdateBasket,
+  dispatchGetProducts,
 }) {
   const classes = useStyles();
   const [loaded, setLoaded] = React.useState(false);
@@ -120,6 +130,7 @@ function ArtificialCashier({
       if (data && data.final) {
         const speechText = data.alternatives[0].transcript;
         setSpeechText(speechText);
+        console.log(speechText);
         setListening(false);
 
         const res = await messageAssistant(
@@ -128,8 +139,13 @@ function ArtificialCashier({
           assistantSessionId,
           speechText
         );
-        if (res) {
-          await synthesizeTextToSpeech(res);
+
+        if (res.actions) {
+          handleAssistantActions(res.actions);
+        }
+
+        if (res.speech) {
+          await synthesizeTextToSpeech(res.speech);
         }
       }
     });
@@ -151,6 +167,62 @@ function ArtificialCashier({
     }
   }, [listening, stream]);
 
+  const handleAssistantActions = (actions) => {
+    if (actions) {
+      for (let action of actions) {
+        switch (action.action_type) {
+          case "add_basket":
+            const product = products.find(
+              (p) => p.productId === parseInt(action.product_id)
+            );
+            if (product) {
+              const newBasket = addBasketItem(product, basket, action.quantity);
+              dispatchUpdateBasket(authUser.userId, newBasket);
+              displayToast(
+                "",
+                "Your shopping basket has been updated",
+                "success"
+              );
+            }
+            break;
+          case "filter_product":
+            if (action.product_query_string) {
+              dispatchGetProducts(
+                action.product_query_string,
+                "Mock Retailer",
+                3
+              );
+              displayToast(
+                "",
+                "The product catalogue has been updated to match your query",
+                "info"
+              );
+            }
+            break;
+          case "reset_context":
+            resetProductCatalog();
+            break;
+          default:
+            break;
+        }
+      }
+    }
+  };
+
+  const resetProductCatalog = () => {
+    dispatchGetProducts(null, "Mock Retailer", 9);
+  };
+
+  const handleAudioPlayingEvent = () => {
+    console.log("AUDIO PLAYING!");
+    setResponding(true);
+  };
+
+  const handleAudioEndedEvent = () => {
+    console.log("AUDIO STOPPED PLAYING!");
+    setResponding(false);
+  };
+
   const synthesizeTextToSpeech = async (text, voice) => {
     if (!voice) voice = testVoices[0];
     try {
@@ -163,16 +235,11 @@ function ArtificialCashier({
         accept,
         audioRef.current
       );
-      audio.addEventListener("playing", () => {
-        console.log("AUDIO PLAYING!");
-        setResponding(true);
-        setResponseText(stripSSMLTags(text));
-      });
-      audio.addEventListener("ended", () => {
-        console.log("AUDIO STOPPED PLAYING!");
-        setResponding(false);
-        setResponseText("");
-      });
+      setResponseText(stripSSMLTags(text));
+      audio.removeEventListener("playing", handleAudioPlayingEvent);
+      audio.removeEventListener("ended", handleAudioEndedEvent);
+      audio.addEventListener("playing", handleAudioPlayingEvent);
+      audio.addEventListener("ended", handleAudioEndedEvent);
     } catch (err) {
       console.log(err);
     }
@@ -206,17 +273,12 @@ function ArtificialCashier({
       <div className={classes.inner}>
         {loaded ? (
           <React.Fragment>
-            {/* {speechText && (
-              <Typography variant="h6">
-                <span className={classes.bold}>Speech:</span> {speechText}
-              </Typography>
-            )} */}
             <model-viewer
               autoplay
               loading="eager"
               animation-name={responding ? "Talking" : "Idle"}
               style={{ width: "350px", height: "350px" }}
-              src={AvatarModel}
+              src={AvatarV2Model}
             ></model-viewer>
             {responseText && (
               <Typography className={classes.transcript} variant="h6">
@@ -251,12 +313,19 @@ const mapStateToProps = (state) => ({
   textToSpeechUrl: state.tokens.textToSpeechUrl,
   assistantToken: state.tokens.assistantToken,
   assistantUrl: state.tokens.assistantUrl,
+  basket: state.basket,
+  authUser: state.auth.user,
+  products: state.product.products,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   dispatchGetSpeechToTextToken: () => dispatch(actions.getSpeechToTextToken()),
   dispatchGetTextToSpeechToken: () => dispatch(actions.getTextToSpeechToken()),
   dispatchGetAssistantToken: () => dispatch(actions.getAssistantToken()),
+  dispatchUpdateBasket: (shopperId, basketData) =>
+    dispatch(basketActions.updateBasket(shopperId, basketData)),
+  dispatchGetProducts: (query, retailer, limit) =>
+    dispatch(productActions.getProducts(query, retailer, limit)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArtificialCashier);

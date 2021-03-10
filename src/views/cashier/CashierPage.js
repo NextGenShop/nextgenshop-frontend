@@ -7,7 +7,6 @@ import Basket from "../../components/Basket";
 import VideoChat from "../../components/VideoChat";
 import ProductCatalog from "../../components/ProductCatalog";
 import ProductSearchBox from "../../components/ProductSearchBox";
-import mockRetailers from "../../store/mock/MockRetailers.json";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,14 +32,18 @@ const useStyles = makeStyles((theme) => ({
 export default function CashierPage() {
   const classes = useStyles();
   const [searchQuery, setSearchQuery] = React.useState("");
-  const mockRetailer = mockRetailers[0].name;
+  const mockRetailer = "Mock Retailer";
   const mockConnectedShopperId = 0;
 
   return (
     <Container maxWidth="xl" className={classes.root}>
       <Grid container spacing={3}>
         <Grid item md={6}>
-          <Typography variant="subtitle1" display="inline" className={classes.mr}>
+          <Typography
+            variant="subtitle1"
+            display="inline"
+            className={classes.mr}
+          >
             Video Call
           </Typography>
           <Typography variant="subtitle2" display="inline">
