@@ -1,15 +1,15 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import StopIcon from "@material-ui/icons/StopOutlined";
-import IconButton from "@material-ui/core/IconButton";
-import MicRoundedIcon from "@material-ui/icons/MicRounded";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Typography from "@material-ui/core/Typography";
-import { connect } from "react-redux";
-import { actions } from "../store/api/tokens";
-import { actions as basketActions } from "../store/api/basket";
-import { actions as productActions } from "../store/api/product";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import StopIcon from '@material-ui/icons/StopOutlined';
+import IconButton from '@material-ui/core/IconButton';
+import MicRoundedIcon from '@material-ui/icons/MicRounded';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
+import { connect } from 'react-redux';
+import { actions } from '../store/api/tokens';
+import { actions as basketActions } from '../store/api/basket';
+import { actions as productActions } from '../store/api/product';
 import {
   getSupportedAudioFormat,
   captureAudioFromMicrophone,
@@ -17,37 +17,37 @@ import {
   createAssistantSession,
   messageAssistant,
   stripSSMLTags,
-} from "../utils/speechUtils";
-import { addBasketItem } from "../utils/basketUtils";
-import AvatarModel from "../assets/models/Avatar.glb";
-import AvatarV2Model from "../assets/models/AvatarV2.glb";
-import { displayToast } from "../utils/displayToast";
+} from '../utils/speechUtils';
+import { addBasketItem } from '../utils/basketUtils';
+import AvatarModel from '../assets/models/Avatar.glb';
+import AvatarV2Model from '../assets/models/AvatarV2.glb';
+import { displayToast } from '../utils/displayToast';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    display: "flex",
+    display: 'flex',
     color: theme.palette.text.secondary,
-    background: "#eeeeee",
-    height: "75vh",
-    alignItems: "center",
-    justifyContent: "center",
+    background: '#eeeeee',
+    height: '75vh',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   inner: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   bold: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   transcript: {
-    wordWrap: "break-word",
+    wordWrap: 'break-word',
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
   },
 }));
 
-function ArtificialCashier({
+export function ArtificialCashier({
   authUser,
   basket,
   products,
@@ -68,15 +68,15 @@ function ArtificialCashier({
   const [listening, setListening] = React.useState(false);
   const [responding, setResponding] = React.useState(false);
   const [stream, setStream] = React.useState(null);
-  const [speechText, setSpeechText] = React.useState("");
-  const [responseText, setResponseText] = React.useState("");
+  const [speechText, setSpeechText] = React.useState('');
+  const [responseText, setResponseText] = React.useState('');
   const [assistantSessionId, setAssistantSessionId] = React.useState(null);
   const audioRef = React.useRef(null);
 
   const testVoices = [
-    "en-GB_JamesV3Voice",
-    "en-GB_KateV3Voice",
-    "en-GB_CharlotteV3Voice",
+    'en-GB_JamesV3Voice',
+    'en-GB_KateV3Voice',
+    'en-GB_CharlotteV3Voice',
   ];
   //ref: https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices
 
@@ -110,8 +110,8 @@ function ArtificialCashier({
       );
       setAssistantSessionId(instanceId);
       setLoaded(true);
-      console.log("Done loading tokens from API.");
-      console.log("Created assistant session: " + instanceId);
+      console.log('Done loading tokens from API.');
+      console.log('Created assistant session: ' + instanceId);
     }
 
     if (!!assistantToken && !!assistantUrl && !assistantSessionId) {
@@ -126,7 +126,7 @@ function ArtificialCashier({
       speechToTextUrl,
       speechToTextToken
     );
-    stream.on("data", async (data) => {
+    stream.on('data', async (data) => {
       if (data && data.final) {
         const speechText = data.alternatives[0].transcript;
         setSpeechText(speechText);
@@ -149,12 +149,12 @@ function ArtificialCashier({
         }
       }
     });
-    stream.on("error", function (err) {
+    stream.on('error', function (err) {
       console.log(err);
       setListening(false);
     });
-    stream.on("end", function () {
-      console.log("stream ended");
+    stream.on('end', function () {
+      console.log('stream ended');
       setListening(false);
     });
     setStream(stream);
@@ -171,7 +171,7 @@ function ArtificialCashier({
     if (actions) {
       for (let action of actions) {
         switch (action.action_type) {
-          case "add_basket":
+          case 'add_basket':
             const product = products.find(
               (p) => p.productId === parseInt(action.product_id)
             );
@@ -179,27 +179,27 @@ function ArtificialCashier({
               const newBasket = addBasketItem(product, basket, action.quantity);
               dispatchUpdateBasket(authUser.userId, newBasket);
               displayToast(
-                "",
-                "Your shopping basket has been updated",
-                "success"
+                '',
+                'Your shopping basket has been updated',
+                'success'
               );
             }
             break;
-          case "filter_product":
+          case 'filter_product':
             if (action.product_query_string) {
               dispatchGetProducts(
                 action.product_query_string,
-                "Mock Retailer",
+                'Mock Retailer',
                 3
               );
               displayToast(
-                "",
-                "The product catalogue has been updated to match your query",
-                "info"
+                '',
+                'The product catalogue has been updated to match your query',
+                'info'
               );
             }
             break;
-          case "reset_context":
+          case 'reset_context':
             resetProductCatalog();
             break;
           default:
@@ -210,16 +210,16 @@ function ArtificialCashier({
   };
 
   const resetProductCatalog = () => {
-    dispatchGetProducts(null, "Mock Retailer", 9);
+    dispatchGetProducts(null, 'Mock Retailer', 9);
   };
 
   const handleAudioPlayingEvent = () => {
-    console.log("AUDIO PLAYING!");
+    console.log('AUDIO PLAYING!');
     setResponding(true);
   };
 
   const handleAudioEndedEvent = () => {
-    console.log("AUDIO STOPPED PLAYING!");
+    console.log('AUDIO STOPPED PLAYING!');
     setResponding(false);
   };
 
@@ -236,32 +236,32 @@ function ArtificialCashier({
         audioRef.current
       );
       setResponseText(stripSSMLTags(text));
-      audio.removeEventListener("playing", handleAudioPlayingEvent);
-      audio.removeEventListener("ended", handleAudioEndedEvent);
-      audio.addEventListener("playing", handleAudioPlayingEvent);
-      audio.addEventListener("ended", handleAudioEndedEvent);
+      audio.removeEventListener('playing', handleAudioPlayingEvent);
+      audio.removeEventListener('ended', handleAudioEndedEvent);
+      audio.addEventListener('playing', handleAudioPlayingEvent);
+      audio.addEventListener('ended', handleAudioEndedEvent);
     } catch (err) {
       console.log(err);
     }
   };
 
   const stopAudio = () => {
-    setResponseText("");
+    setResponseText('');
     audioRef.current.pause();
     audioRef.current.currentTime = 0;
   };
 
   const ListenButton = listening ? (
     <IconButton
-      color="secondary"
-      aria-label="stop"
+      color='secondary'
+      aria-label='stop'
       onClick={() => setListening(false)}
     >
-      <StopIcon fontSize="large" />
+      <StopIcon fontSize='large' />
     </IconButton>
   ) : (
-    <IconButton color="primary" aria-label="speak" onClick={startListening}>
-      <MicRoundedIcon fontSize="large" />
+    <IconButton color='primary' aria-label='speak' onClick={startListening}>
+      <MicRoundedIcon fontSize='large' />
     </IconButton>
   );
 
@@ -275,27 +275,27 @@ function ArtificialCashier({
           <React.Fragment>
             <model-viewer
               autoplay
-              loading="eager"
-              animation-name={responding ? "Talking" : "Idle"}
-              style={{ width: "350px", height: "350px" }}
+              loading='eager'
+              animation-name={responding ? 'Talking' : 'Idle'}
+              style={{ width: '350px', height: '350px' }}
               src={AvatarV2Model}
             ></model-viewer>
             {responseText && (
-              <Typography className={classes.transcript} variant="h6">
+              <Typography className={classes.transcript} variant='h6'>
                 {responseText}
               </Typography>
             )}
             <br />
-            <Typography variant="subtitle2">
+            <Typography variant='subtitle2'>
               {listening
-                ? "Listening..."
-                : "Press the mic icon and start speaking"}
+                ? 'Listening...'
+                : 'Press the mic icon and start speaking'}
             </Typography>
             {ListenButton}
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <Typography variant="subtitle2" gutterBottom>
+            <Typography variant='subtitle2' gutterBottom>
               Loading... Please wait
             </Typography>
             <CircularProgress size={30} />

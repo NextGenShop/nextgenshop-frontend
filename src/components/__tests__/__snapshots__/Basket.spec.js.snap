@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Basket should correctly render 1`] = `ShallowWrapper {}`;
+
+exports[`Basket should correctly render with props 1`] = `ShallowWrapper {}`;
