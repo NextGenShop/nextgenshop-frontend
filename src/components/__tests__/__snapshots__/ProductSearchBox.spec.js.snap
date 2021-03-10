@@ -1,5 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProductSearchBox should correctly render 1`] = `ShallowWrapper {}`;
+exports[`ProductSearchBox should correctly render 1`] = `
+<WithStyles(ForwardRef(TextField))
+  InputProps={
+    Object {
+      "startAdornment": <WithStyles(ForwardRef(InputAdornment))
+        position="start"
+      >
+        <Memo />
+      </WithStyles(ForwardRef(InputAdornment))>,
+    }
+  }
+  className="makeStyles-mb-1"
+  fullWidth={true}
+  id="search"
+  label="Search for a product"
+/>
+`;
 
-exports[`ProductSearchBox should correctly render with props 1`] = `ShallowWrapper {}`;
+exports[`ProductSearchBox should correctly render with props 1`] = `
+<WithStyles(ForwardRef(TextField))
+  InputProps={
+    Object {
+      "startAdornment": <WithStyles(ForwardRef(InputAdornment))
+        position="start"
+      >
+        <Memo />
+      </WithStyles(ForwardRef(InputAdornment))>,
+    }
+  }
+  className="makeStyles-mb-1"
+  fullWidth={true}
+  id="search"
+  label="Search for a product"
+  onChange={[Function]}
+  value="mockValue"
+/>
+`;

@@ -1,5 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Basket should correctly render 1`] = `ShallowWrapper {}`;
+exports[`Basket should correctly render 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(List))
+    className="makeStyles-list-1"
+  >
+    <WithStyles(ForwardRef(Typography))
+      variant="subtitle2"
+    >
+      Your shopping basket is empty.
+    </WithStyles(ForwardRef(Typography))>
+  </WithStyles(ForwardRef(List))>
+  <WithStyles(ForwardRef(Typography))
+    className="makeStyles-total-3"
+    component="div"
+    variant="h6"
+  >
+    Total:
+     
+    <WithStyles(ForwardRef(Typography))
+      display="inline"
+      variant="h6"
+    >
+      £ 
+      0
+    </WithStyles(ForwardRef(Typography))>
+  </WithStyles(ForwardRef(Typography))>
+</Fragment>
+`;
 
-exports[`Basket should correctly render with props 1`] = `ShallowWrapper {}`;
+exports[`Basket should correctly render with props 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(List))
+    className="makeStyles-list-1"
+  >
+    <WithStyles(ForwardRef(Typography))
+      variant="subtitle2"
+    >
+      Your shopping basket is empty.
+    </WithStyles(ForwardRef(Typography))>
+  </WithStyles(ForwardRef(List))>
+  <WithStyles(ForwardRef(Typography))
+    className="makeStyles-total-3"
+    component="div"
+    variant="h6"
+  >
+    Total:
+     
+    <WithStyles(ForwardRef(Typography))
+      display="inline"
+      variant="h6"
+    >
+      £ 
+      0
+    </WithStyles(ForwardRef(Typography))>
+  </WithStyles(ForwardRef(Typography))>
+</Fragment>
+`;

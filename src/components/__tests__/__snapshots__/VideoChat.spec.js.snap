@@ -1,3 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`VideoChat should correctly render 1`] = `ShallowWrapper {}`;
+exports[`VideoChat should correctly render 1`] = `
+<WithStyles(ForwardRef(Paper))
+  className="makeStyles-paper-1"
+>
+  <Memo([object Object]) />
+</WithStyles(ForwardRef(Paper))>
+`;

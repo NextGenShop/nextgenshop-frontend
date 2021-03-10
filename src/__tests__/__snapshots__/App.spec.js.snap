@@ -1,3 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App should correctly render 1`] = `ShallowWrapper {}`;
+exports[`App should correctly render 1`] = `
+<Fragment>
+  <BrowserRouter
+    basename="/nextgenshop-frontend"
+  >
+    <Switch>
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.memo),
+            "WrappedComponent": [Function],
+            "compare": null,
+            "type": [Function],
+          }
+        }
+        exact={true}
+        path="/"
+      />
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.memo),
+            "WrappedComponent": [Function],
+            "compare": null,
+            "type": [Function],
+          }
+        }
+        path="/login"
+      />
+      <Route
+        component={[Function]}
+        path="/shop/queue"
+      />
+      <Route
+        component={[Function]}
+        path="/cashier/queue"
+      />
+    </Switch>
+  </BrowserRouter>
+  <Connect(ReduxToastr)
+    closeOnToastrClick={true}
+    newestOnTop={true}
+    position="top-center"
+    preventDuplicates={true}
+    progressBar={true}
+    timeOut={5000}
+    transitionIn="fadeIn"
+    transitionOut="fadeOut"
+  />
+</Fragment>
+`;

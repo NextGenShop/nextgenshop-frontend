@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProductCatalog should correctly render 1`] = `ShallowWrapper {}`;
+exports[`ProductCatalog should correctly render 1`] = `
+<WithStyles(ForwardRef(Grid))
+  className="makeStyles-root-1"
+  container={true}
+  spacing={2}
+/>
+`;
 
-exports[`ProductCatalog should correctly render with props 1`] = `ShallowWrapper {}`;
+exports[`ProductCatalog should correctly render with props 1`] = `
+<WithStyles(ForwardRef(Grid))
+  className="makeStyles-root-1"
+  container={true}
+  spacing={2}
+/>
+`;
