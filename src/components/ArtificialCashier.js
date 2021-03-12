@@ -74,11 +74,6 @@ export function ArtificialCashier({
   const audioRef = React.useRef(null);
 
   const [voiceIndex, setVoiceIndex] = React.useState(0);
-  const voices = [
-    'en-GB_JamesV3Voice',
-    'en-GB_KateV3Voice',
-    'en-GB_CharlotteV3Voice',
-  ];
   //ref: https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices
 
   React.useEffect(() => {
@@ -105,6 +100,11 @@ export function ArtificialCashier({
 
   const synthesizeTextToSpeech = useCallback(
     async (text) => {
+      const voices = [
+        'en-GB_JamesV3Voice',
+        'en-GB_KateV3Voice',
+        'en-GB_CharlotteV3Voice',
+      ];
       const voice = voices[voiceIndex];
       try {
         const accept = getSupportedAudioFormat(audioRef);
@@ -116,6 +116,7 @@ export function ArtificialCashier({
           accept,
           audioRef.current
         );
+        setResponseText(stripSSMLTags(text));
         audio.removeEventListener('playing', handleAudioPlayingEvent);
         audio.removeEventListener('ended', handleAudioEndedEvent);
         audio.addEventListener('playing', handleAudioPlayingEvent);
@@ -124,7 +125,7 @@ export function ArtificialCashier({
         console.log(err);
       }
     },
-    [textToSpeechToken, textToSpeechUrl, voiceIndex, voices]
+    [textToSpeechToken, textToSpeechUrl, voiceIndex]
   );
 
   React.useEffect(() => {
@@ -162,7 +163,7 @@ export function ArtificialCashier({
       setLoaded(true);
       console.log('Done loading tokens from API.');
       synthesizeTextToSpeech(
-        'Hello. Welcome to the IBM Next Gen Shopping Experience. To get started, simply ask for a product that you would like to order.'
+        'Hello. Welcome to the IBM NextGen Shopping Experience. To get started, simply ask for a product that you would like to order.'
       );
     }
   }, [
@@ -204,7 +205,6 @@ export function ArtificialCashier({
 
         if (res.speech) {
           await synthesizeTextToSpeech(res.speech);
-          setResponseText(stripSSMLTags(res.speech));
         }
       }
     });
