@@ -121,7 +121,7 @@ export const messageAssistant = async (
               );
             } else {
               acc.push(
-                '<prosody rate="+15%">' + obj.text.trim() + '</prosody>'
+                '<prosody rate="+10%">' + obj.text.trim() + '</prosody>'
               );
             }
           }

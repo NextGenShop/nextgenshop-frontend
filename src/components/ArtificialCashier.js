@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import StopIcon from '@material-ui/icons/StopOutlined';
@@ -22,6 +23,7 @@ import { addBasketItem } from '../utils/basketUtils';
 import AvatarModel from '../assets/models/Avatar.glb';
 import AvatarV2Model from '../assets/models/AvatarV2.glb';
 import { displayToast } from '../utils/displayToast';
+import { CheckOutlined } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -62,6 +64,7 @@ export function ArtificialCashier({
   dispatchGetAssistantToken,
   dispatchUpdateBasket,
   dispatchGetProducts,
+  history,
 }) {
   const classes = useStyles();
   const [loaded, setLoaded] = React.useState(false);
@@ -72,6 +75,7 @@ export function ArtificialCashier({
   const [responseText, setResponseText] = React.useState('');
   const [assistantSessionId, setAssistantSessionId] = React.useState(null);
   const audioRef = React.useRef(null);
+  const [redirectCheckout, setRedirectCheckout] = React.useState(false);
 
   const [voiceIndex, setVoiceIndex] = React.useState(0);
   //ref: https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices
@@ -199,12 +203,12 @@ export function ArtificialCashier({
           speechText
         );
 
-        if (res.actions) {
-          handleAssistantActions(res.actions);
-        }
-
         if (res.speech) {
           await synthesizeTextToSpeech(res.speech);
+        }
+
+        if (res.actions) {
+          handleAssistantActions(res.actions);
         }
       }
     });
@@ -261,6 +265,9 @@ export function ArtificialCashier({
           case 'reset_context':
             resetProductCatalog();
             break;
+          case 'checkout':
+            setRedirectCheckout(true);
+            break;
           default:
             break;
         }
@@ -281,6 +288,15 @@ export function ArtificialCashier({
     console.log('AUDIO STOPPED PLAYING!');
     setResponding(false);
   };
+
+  React.useEffect(() => {
+    if (redirectCheckout && !responding) {
+      setRedirectCheckout(false);
+      history.push({
+        pathname: '/checkout',
+      });
+    }
+  }, [history, redirectCheckout, responding]);
 
   const stopAudio = () => {
     setResponseText('');
@@ -365,4 +381,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(productActions.getProducts(query, retailer, limit)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArtificialCashier);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ArtificialCashier)
+);
