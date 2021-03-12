@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import StopIcon from '@material-ui/icons/StopOutlined';
@@ -73,7 +73,8 @@ export function ArtificialCashier({
   const [assistantSessionId, setAssistantSessionId] = React.useState(null);
   const audioRef = React.useRef(null);
 
-  const testVoices = [
+  const [voiceIndex, setVoiceIndex] = React.useState(0);
+  const voices = [
     'en-GB_JamesV3Voice',
     'en-GB_KateV3Voice',
     'en-GB_CharlotteV3Voice',
@@ -102,6 +103,30 @@ export function ArtificialCashier({
     assistantUrl,
   ]);
 
+  const synthesizeTextToSpeech = useCallback(
+    async (text) => {
+      const voice = voices[voiceIndex];
+      try {
+        const accept = getSupportedAudioFormat(audioRef);
+        const audio = await textToSpeech(
+          textToSpeechUrl,
+          textToSpeechToken,
+          text,
+          voice,
+          accept,
+          audioRef.current
+        );
+        audio.removeEventListener('playing', handleAudioPlayingEvent);
+        audio.removeEventListener('ended', handleAudioEndedEvent);
+        audio.addEventListener('playing', handleAudioPlayingEvent);
+        audio.addEventListener('ended', handleAudioEndedEvent);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    [textToSpeechToken, textToSpeechUrl, voiceIndex, voices]
+  );
+
   React.useEffect(() => {
     async function createSession() {
       const instanceId = await createAssistantSession(
@@ -109,15 +134,48 @@ export function ArtificialCashier({
         assistantToken
       );
       setAssistantSessionId(instanceId);
-      setLoaded(true);
-      console.log('Done loading tokens from API.');
       console.log('Created assistant session: ' + instanceId);
     }
 
     if (!!assistantToken && !!assistantUrl && !assistantSessionId) {
       createSession();
     }
-  }, [assistantToken, assistantUrl, assistantSessionId]);
+  }, [
+    assistantToken,
+    assistantUrl,
+    assistantSessionId,
+    textToSpeechToken,
+    synthesizeTextToSpeech,
+  ]);
+
+  React.useEffect(() => {
+    if (
+      !!speechToTextToken &&
+      !!speechToTextUrl &&
+      !!textToSpeechToken &&
+      !!textToSpeechUrl &&
+      !!assistantToken &&
+      !!assistantUrl &&
+      !!assistantSessionId &&
+      !loaded
+    ) {
+      setLoaded(true);
+      console.log('Done loading tokens from API.');
+      synthesizeTextToSpeech(
+        'Hello. Welcome to the IBM Next Gen Shopping Experience. To get started, simply ask for a product that you would like to order.'
+      );
+    }
+  }, [
+    loaded,
+    speechToTextToken,
+    speechToTextUrl,
+    textToSpeechToken,
+    textToSpeechUrl,
+    assistantToken,
+    assistantUrl,
+    assistantSessionId,
+    synthesizeTextToSpeech,
+  ]);
 
   const startListening = async () => {
     stopAudio();
@@ -146,6 +204,7 @@ export function ArtificialCashier({
 
         if (res.speech) {
           await synthesizeTextToSpeech(res.speech);
+          setResponseText(stripSSMLTags(res.speech));
         }
       }
     });
@@ -221,28 +280,6 @@ export function ArtificialCashier({
   const handleAudioEndedEvent = () => {
     console.log('AUDIO STOPPED PLAYING!');
     setResponding(false);
-  };
-
-  const synthesizeTextToSpeech = async (text, voice) => {
-    if (!voice) voice = testVoices[0];
-    try {
-      const accept = getSupportedAudioFormat(audioRef);
-      const audio = await textToSpeech(
-        textToSpeechUrl,
-        textToSpeechToken,
-        text,
-        voice,
-        accept,
-        audioRef.current
-      );
-      setResponseText(stripSSMLTags(text));
-      audio.removeEventListener('playing', handleAudioPlayingEvent);
-      audio.removeEventListener('ended', handleAudioEndedEvent);
-      audio.addEventListener('playing', handleAudioPlayingEvent);
-      audio.addEventListener('ended', handleAudioEndedEvent);
-    } catch (err) {
-      console.log(err);
-    }
   };
 
   const stopAudio = () => {
