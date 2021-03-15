@@ -26,3 +26,30 @@ exports[`ArtificialCashier should correctly render 1`] = `
   </div>
 </WithStyles(ForwardRef(Paper))>
 `;
+
+exports[`ArtificialCashier should correctly render with props 1`] = `
+<WithStyles(ForwardRef(Paper))
+  className="makeStyles-paper-1"
+>
+  <audio>
+    Your browser does not support the 
+    <code>
+      audio
+    </code>
+     element.
+  </audio>
+  <div
+    className="makeStyles-inner-2"
+  >
+    <WithStyles(ForwardRef(Typography))
+      gutterBottom={true}
+      variant="subtitle2"
+    >
+      Loading... Please wait
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(CircularProgress))
+      size={30}
+    />
+  </div>
+</WithStyles(ForwardRef(Paper))>
+`;
