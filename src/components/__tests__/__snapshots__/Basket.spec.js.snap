@@ -26,6 +26,11 @@ exports[`Basket should correctly render 1`] = `
       0
     </WithStyles(ForwardRef(Typography))>
   </WithStyles(ForwardRef(Typography))>
+  <Link
+    to="/checkout"
+  >
+     Checkout 
+  </Link>
 </Fragment>
 `;
 
@@ -55,5 +60,10 @@ exports[`Basket should correctly render with props 1`] = `
       0
     </WithStyles(ForwardRef(Typography))>
   </WithStyles(ForwardRef(Typography))>
+  <Link
+    to="/checkout"
+  >
+     Checkout 
+  </Link>
 </Fragment>
 `;
