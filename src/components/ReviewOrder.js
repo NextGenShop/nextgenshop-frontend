@@ -1,24 +1,29 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Grid from '@material-ui/core/Grid';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import Grid from "@material-ui/core/Grid";
+import basket from "../components/Basket";
 
 const products = [
-  { name: 'Product 1', desc: 'A nice thing', price: '$9.99' },
-  { name: 'Product 2', desc: 'Another thing', price: '$3.45' },
-  { name: 'Product 3', desc: 'Something else', price: '$6.51' },
-  { name: 'Product 4', desc: 'Best thing of all', price: '$14.11' },
-  { name: 'Shipping', desc: '', price: 'Free' },
+  { name: "Product 1", desc: "2 Raw Lobster Tails", price: "£ 20.00" },
+  {
+    name: "Product 2",
+    desc: "British Semi Skimmed Milk 2.27L (4 pint)",
+    price: "£ 1.10",
+  },
+  { name: "Product 3", desc: "Chicken Breast Fillets 640g", price: "£ 3.60" },
+  { name: "Product 4", desc: "Dairy Milk Chocolate Bar 110G", price: "£ 0.98" },
+  { name: "Shipping", desc: "", price: "Free" },
 ];
-const addresses = ['1 Material-UI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
+const addresses = ["Gower Street", "No 167", "London", "WCE 6AP", "UK"];
 const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
+  { name: "Card type", detail: "Visa" },
+  { name: "Card holder", detail: "Mr John Smith" },
+  { name: "Card number", detail: "xxxx-xxxx-xxxx-1234" },
+  { name: "Expiry date", detail: "04/2024" },
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -51,7 +56,7 @@ export default function Review() {
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            $34.06
+            £{basket && basket.totalPrice ? basket.totalPrice.toFixed(2) : 0}
           </Typography>
         </ListItem>
       </List>
@@ -61,7 +66,7 @@ export default function Review() {
             Shipping
           </Typography>
           <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+          <Typography gutterBottom>{addresses.join(", ")}</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom className={classes.title}>

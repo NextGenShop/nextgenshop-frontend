@@ -11,11 +11,13 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import AddressForm from "../../components/checkout/AddressForm";
 import PaymentForm from "../../components/checkout/PaymentForm";
-import Review from "../../components/checkout/ReviewOrder";
+import Review from "../../components/ReviewOrder";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: "relative",
+    color: "primary",
   },
   layout: {
     width: "auto",
@@ -80,10 +82,12 @@ export default function Checkout() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="absolute" color="default" className={classes.appBar}>
+      <AppBar position="absolute" color="primary" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            NextGenShop
+            <Link to="/login" style={{ textDecoration: "none", color: "#FFF" }}>
+              NextGenShop
+            </Link>
           </Typography>
         </Toolbar>
       </AppBar>
