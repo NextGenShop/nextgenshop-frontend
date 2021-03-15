@@ -1,12 +1,13 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Basket from "../../components/Basket";
-import VideoChat from "../../components/VideoChat";
-import ProductCatalog from "../../components/ProductCatalog";
-import ProductSearchBox from "../../components/ProductSearchBox";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Basket from '../../components/Basket';
+import VideoChat from '../../components/VideoChat';
+import ProductCatalog from '../../components/ProductCatalog';
+import ProductSearchBox from '../../components/ProductSearchBox';
+import { displayToast } from '../../utils/displayToast';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 0,
-    paddingTop: "56.25%", // 16:9
+    paddingTop: '56.25%', // 16:9
   },
   mr: {
     marginRight: theme.spacing(1),
@@ -31,30 +32,38 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CashierPage() {
   const classes = useStyles();
-  const [searchQuery, setSearchQuery] = React.useState("");
-  const mockRetailer = "Mock Retailer";
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const mockRetailer = 'Mock Retailer';
   const mockConnectedShopperId = 0;
 
+  React.useEffect(() => {
+    displayToast(
+      '',
+      'The cashier page is under development and only for demonstration purposes.',
+      'warning'
+    );
+  }, []);
+
   return (
-    <Container maxWidth="xl" className={classes.root}>
+    <Container maxWidth='xl' className={classes.root}>
       <Grid container spacing={3}>
         <Grid item md={6}>
           <Typography
-            variant="subtitle1"
-            display="inline"
+            variant='subtitle1'
+            display='inline'
             className={classes.mr}
           >
             Video Call
           </Typography>
-          <Typography variant="subtitle2" display="inline">
-            {" "}
+          <Typography variant='subtitle2' display='inline'>
+            {' '}
             Customer Name
           </Typography>
         </Grid>
         <Grid item xs={6}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
-              <Typography variant="subtitle1">Product Catalogue</Typography>
+              <Typography variant='subtitle1'>Product Catalogue</Typography>
             </Grid>
           </Grid>
         </Grid>
@@ -79,7 +88,7 @@ export default function CashierPage() {
                 shopperId={mockConnectedShopperId}
               />
               <hr className={classes.mt} />
-              <Typography variant="subtitle1">Customer Basket</Typography>
+              <Typography variant='subtitle1'>Customer Basket</Typography>
               <Basket shopperId={mockConnectedShopperId} />
             </Grid>
           </Grid>

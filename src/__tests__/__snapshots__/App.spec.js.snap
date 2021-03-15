@@ -31,14 +31,6 @@ exports[`App should correctly render 1`] = `
       />
       <Route
         component={[Function]}
-        path="/shop/queue"
-      />
-      <Route
-        component={[Function]}
-        path="/cashier/queue"
-      />
-      <Route
-        component={[Function]}
         path="/checkout"
       />
     </Switch>

@@ -5,5 +5,10 @@ exports[`VideoChat should correctly render 1`] = `
   className="makeStyles-paper-1"
 >
   <Memo([object Object]) />
+  <WithStyles(ForwardRef(Typography))
+    variant="subtitle1"
+  >
+    The video chat component is under development.
+  </WithStyles(ForwardRef(Typography))>
 </WithStyles(ForwardRef(Paper))>
 `;
