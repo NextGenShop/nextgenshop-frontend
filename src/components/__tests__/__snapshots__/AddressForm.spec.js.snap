@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddressForm should correctly render 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(Typography))
+    gutterBottom={true}
+    variant="h6"
+  >
+    Shipping address
+  </WithStyles(ForwardRef(Typography))>
+  <WithStyles(ForwardRef(Grid))
+    container={true}
+    spacing={3}
+  >
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      sm={6}
+      xs={12}
+    >
+      <WithStyles(ForwardRef(TextField))
+        autoComplete="given-name"
+        fullWidth={true}
+        id="firstName"
+        label="First name"
+        name="firstName"
+        required={true}
+      />
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      sm={6}
+      xs={12}
+    >
+      <WithStyles(ForwardRef(TextField))
+        autoComplete="family-name"
+        fullWidth={true}
+        id="lastName"
+        label="Last name"
+        name="lastName"
+        required={true}
+      />
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      xs={12}
+    >
+      <WithStyles(ForwardRef(TextField))
+        autoComplete="shipping address-line1"
+        fullWidth={true}
+        id="address1"
+        label="Address line 1"
+        name="address1"
+        required={true}
+      />
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      xs={12}
+    >
+      <WithStyles(ForwardRef(TextField))
+        autoComplete="shipping address-line2"
+        fullWidth={true}
+        id="address2"
+        label="Address line 2"
+        name="address2"
+      />
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      sm={6}
+      xs={12}
+    >
+      <WithStyles(ForwardRef(TextField))
+        autoComplete="shipping address-level2"
+        fullWidth={true}
+        id="city"
+        label="City"
+        name="city"
+        required={true}
+      />
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      sm={6}
+      xs={12}
+    >
+      <WithStyles(ForwardRef(TextField))
+        fullWidth={true}
+        id="state"
+        label="State/Province/Region"
+        name="state"
+      />
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      sm={6}
+      xs={12}
+    >
+      <WithStyles(ForwardRef(TextField))
+        autoComplete="shipping postal-code"
+        fullWidth={true}
+        id="zip"
+        label="Zip / Postal code"
+        name="zip"
+        required={true}
+      />
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      sm={6}
+      xs={12}
+    >
+      <WithStyles(ForwardRef(TextField))
+        autoComplete="shipping country"
+        fullWidth={true}
+        id="country"
+        label="Country"
+        name="country"
+        required={true}
+      />
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      xs={12}
+    >
+      <WithStyles(ForwardRef(FormControlLabel))
+        control={
+          <WithStyles(ForwardRef(Checkbox))
+            color="secondary"
+            name="saveAddress"
+            value="yes"
+          />
+        }
+        label="Use this address for payment details"
+      />
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(Grid))>
+</Fragment>
+`;
