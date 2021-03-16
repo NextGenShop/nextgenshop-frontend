@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CashierPage should correctly render 1`] = `
+<WithStyles(ForwardRef(Container))
+  className="makeStyles-root-1"
+  maxWidth="xl"
+>
+  <WithStyles(ForwardRef(Grid))
+    container={true}
+    spacing={3}
+  >
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      md={6}
+    >
+      <WithStyles(ForwardRef(Typography))
+        className="makeStyles-mr-3"
+        display="inline"
+        variant="subtitle1"
+      >
+        Video Call
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Typography))
+        display="inline"
+        variant="subtitle2"
+      >
+         
+        Customer Name
+      </WithStyles(ForwardRef(Typography))>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      xs={6}
+    >
+      <WithStyles(ForwardRef(Grid))
+        container={true}
+        spacing={3}
+      >
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          xs={12}
+        >
+          <WithStyles(ForwardRef(Typography))
+            variant="subtitle1"
+          >
+            Product Catalogue
+          </WithStyles(ForwardRef(Typography))>
+        </WithStyles(ForwardRef(Grid))>
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    container={true}
+    spacing={3}
+  >
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      md={6}
+    >
+      <VideoChat />
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      xs={6}
+    >
+      <WithStyles(ForwardRef(Grid))
+        container={true}
+        spacing={3}
+      >
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          xs={12}
+        >
+          <ProductSearchBox
+            onChange={[Function]}
+            value=""
+          />
+          <Connect(ProductCatalog)
+            retailer="Mock Retailer"
+            searchQuery=""
+            shopperId={0}
+            tableView={true}
+          />
+          <hr
+            className="makeStyles-mt-4"
+          />
+          <WithStyles(ForwardRef(Typography))
+            variant="subtitle1"
+          >
+            Customer Basket
+          </WithStyles(ForwardRef(Typography))>
+          <Connect(Basket)
+            shopperId={0}
+          />
+        </WithStyles(ForwardRef(Grid))>
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Container))>
+`;

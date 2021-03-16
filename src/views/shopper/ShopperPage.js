@@ -1,13 +1,13 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import ProductCatalog from "../../components/ProductCatalog";
-import ProductSearchBox from "../../components/ProductSearchBox";
-import ArtificialCashier from "../../components/ArtificialCashier";
-import Basket from "../../components/Basket";
-import { connect } from "react-redux";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import ProductCatalog from '../../components/ProductCatalog';
+import ProductSearchBox from '../../components/ProductSearchBox';
+import ArtificialCashier from '../../components/ArtificialCashier';
+import Basket from '../../components/Basket';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,18 +19,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ShopperPage({ authUser }) {
+export function ShopperPage({ authUser }) {
   const classes = useStyles();
-  const [searchQuery, setSearchQuery] = React.useState("");
+  const [searchQuery, setSearchQuery] = React.useState('');
 
   return (
-    <Container maxWidth="xl" className={classes.root}>
+    <Container maxWidth='xl' className={classes.root}>
       <Grid container spacing={3}>
         <Grid item md={6}>
-          <Typography variant="subtitle1">Artificial Cashier</Typography>
+          <Typography variant='subtitle1'>Artificial Cashier</Typography>
         </Grid>
         <Grid item xs={6}>
-          <Typography variant="subtitle1">Product Catalogue</Typography>
+          <Typography variant='subtitle1'>Product Catalogue</Typography>
         </Grid>
       </Grid>
       <Grid container spacing={3}>
@@ -49,13 +49,13 @@ function ShopperPage({ authUser }) {
             </Grid>
           </Grid>
           <ProductCatalog
-            retailer="Mock Retailer"
+            retailer='Mock Retailer'
             searchQuery={searchQuery}
             limit={9}
             shopperId={authUser.userId}
           />
           <hr className={classes.mt} />
-          <Typography variant="subtitle1">Shopping Basket</Typography>
+          <Typography variant='subtitle1'>Shopping Basket</Typography>
           <Basket shopperId={authUser.userId} />
         </Grid>
       </Grid>

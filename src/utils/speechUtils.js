@@ -12,7 +12,7 @@ export const getSupportedAudioFormat = (audioElement) => {
 
   let accept =
     audioElement &&
-    audioElement.canPlayType === 'function' &&
+    typeof audioElement.canPlayType === 'function' &&
     audioElement.canPlayType('audio/mp3') !== ''
       ? 'audio/mp3'
       : 'audio/wav';
@@ -31,7 +31,7 @@ export const captureAudioFromMicrophone = async (
       audio: true,
     });
   } catch (err) {
-    console.log(err);
+    console.log('Could not find media devices');
   }
 
   const recognizeMicrophoneStream = recognizeMic({
@@ -89,7 +89,7 @@ export const messageAssistant = async (
   message
 ) => {
   let res;
-  let data = { speech: '', actions: null };
+  let data = { speech: '', actions: [] };
   try {
     res = await fetch(
       `${assistantUrl}/sessions/${sessionId}/message?version=2020-04-01`,
@@ -104,7 +104,6 @@ export const messageAssistant = async (
       }
     );
     res = await res.json();
-    console.log(res);
     data.speech =
       '<speak version="1.0">' +
       res.output.generic
@@ -139,7 +138,6 @@ export const messageAssistant = async (
   } catch (err) {
     console.log(err);
   }
-  console.log(data);
   return data;
 };
 

@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckoutPage should correctly render 1`] = `
+<Fragment>
+  <WithStyles(CssBaseline) />
+  <WithStyles(ForwardRef(AppBar))
+    className="makeStyles-appBar-1"
+    color="primary"
+    position="absolute"
+  >
+    <WithStyles(ForwardRef(Toolbar))>
+      <WithStyles(ForwardRef(Typography))
+        color="inherit"
+        noWrap={true}
+        variant="h6"
+      >
+        <Link
+          style={
+            Object {
+              "color": "#FFF",
+              "textDecoration": "none",
+            }
+          }
+          to="/login"
+        >
+          NextGenShop
+        </Link>
+      </WithStyles(ForwardRef(Typography))>
+    </WithStyles(ForwardRef(Toolbar))>
+  </WithStyles(ForwardRef(AppBar))>
+  <main
+    className="makeStyles-layout-2"
+  >
+    <WithStyles(ForwardRef(Paper))
+      className="makeStyles-paper-3"
+    >
+      <WithStyles(ForwardRef(Typography))
+        align="center"
+        component="h1"
+        variant="h4"
+      >
+        Checkout
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Stepper))
+        activeStep={0}
+        className="makeStyles-stepper-4"
+      >
+        <WithStyles(ForwardRef(Step))
+          key="Shipping address"
+        >
+          <WithStyles(ForwardRef(StepLabel))>
+            Shipping address
+          </WithStyles(ForwardRef(StepLabel))>
+        </WithStyles(ForwardRef(Step))>
+        <WithStyles(ForwardRef(Step))
+          key="Payment details"
+        >
+          <WithStyles(ForwardRef(StepLabel))>
+            Payment details
+          </WithStyles(ForwardRef(StepLabel))>
+        </WithStyles(ForwardRef(Step))>
+        <WithStyles(ForwardRef(Step))
+          key="Review your order"
+        >
+          <WithStyles(ForwardRef(StepLabel))>
+            Review your order
+          </WithStyles(ForwardRef(StepLabel))>
+        </WithStyles(ForwardRef(Step))>
+      </WithStyles(ForwardRef(Stepper))>
+      <AddressForm />
+      <div
+        className="makeStyles-buttons-5"
+      >
+        <WithStyles(ForwardRef(Button))
+          className="makeStyles-button-6"
+          color="primary"
+          onClick={[Function]}
+          variant="contained"
+        >
+          Next
+        </WithStyles(ForwardRef(Button))>
+      </div>
+    </WithStyles(ForwardRef(Paper))>
+  </main>
+</Fragment>
+`;
+
+exports[`CheckoutPage should correctly render with props 1`] = `
+<Fragment>
+  <WithStyles(CssBaseline) />
+  <WithStyles(ForwardRef(AppBar))
+    className="makeStyles-appBar-1"
+    color="primary"
+    position="absolute"
+  >
+    <WithStyles(ForwardRef(Toolbar))>
+      <WithStyles(ForwardRef(Typography))
+        color="inherit"
+        noWrap={true}
+        variant="h6"
+      >
+        <Link
+          style={
+            Object {
+              "color": "#FFF",
+              "textDecoration": "none",
+            }
+          }
+          to="/login"
+        >
+          NextGenShop
+        </Link>
+      </WithStyles(ForwardRef(Typography))>
+    </WithStyles(ForwardRef(Toolbar))>
+  </WithStyles(ForwardRef(AppBar))>
+  <main
+    className="makeStyles-layout-2"
+  >
+    <WithStyles(ForwardRef(Paper))
+      className="makeStyles-paper-3"
+    >
+      <WithStyles(ForwardRef(Typography))
+        align="center"
+        component="h1"
+        variant="h4"
+      >
+        Checkout
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Stepper))
+        activeStep={0}
+        className="makeStyles-stepper-4"
+      >
+        <WithStyles(ForwardRef(Step))
+          key="Shipping address"
+        >
+          <WithStyles(ForwardRef(StepLabel))>
+            Shipping address
+          </WithStyles(ForwardRef(StepLabel))>
+        </WithStyles(ForwardRef(Step))>
+        <WithStyles(ForwardRef(Step))
+          key="Payment details"
+        >
+          <WithStyles(ForwardRef(StepLabel))>
+            Payment details
+          </WithStyles(ForwardRef(StepLabel))>
+        </WithStyles(ForwardRef(Step))>
+        <WithStyles(ForwardRef(Step))
+          key="Review your order"
+        >
+          <WithStyles(ForwardRef(StepLabel))>
+            Review your order
+          </WithStyles(ForwardRef(StepLabel))>
+        </WithStyles(ForwardRef(Step))>
+      </WithStyles(ForwardRef(Stepper))>
+      <AddressForm />
+      <div
+        className="makeStyles-buttons-5"
+      >
+        <WithStyles(ForwardRef(Button))
+          className="makeStyles-button-6"
+          color="primary"
+          onClick={[Function]}
+          variant="contained"
+        >
+          Next
+        </WithStyles(ForwardRef(Button))>
+      </div>
+    </WithStyles(ForwardRef(Paper))>
+  </main>
+</Fragment>
+`;

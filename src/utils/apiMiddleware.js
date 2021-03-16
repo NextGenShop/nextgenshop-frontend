@@ -10,7 +10,7 @@ import { handleRequest } from '../store/mock/MockApi';
 //   method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 // }
 
-const apiMiddleware = ({ dispatch }) => (next) => (action) => {
+const apiMiddleware = ({ dispatch }) => (next) => async (action) => {
   next(action);
 
   if (action.type !== 'API') return;
@@ -37,17 +37,15 @@ const apiMiddleware = ({ dispatch }) => (next) => (action) => {
   const usedMock = handleRequest(dispatch, name, req);
   if (!usedMock) {
     dispatch({ type: `${name}_REQUEST` });
-    axios
-      .request(req)
-      .then(({ data }) => {
-        dispatch({ type: `${name}_SUCCESS`, response: data, extraData });
-      })
-      .catch((err) => {
-        const errorMessage = err.response
-          ? err.response.data.error
-          : 'An unknown error has occurred';
-        dispatch({ type: `${name}_FAILURE`, error: errorMessage });
-      });
+    try {
+      const { data } = await axios.request(req);
+      dispatch({ type: `${name}_SUCCESS`, response: data, extraData });
+    } catch (err) {
+      const errorMessage = err.response
+        ? err.response.data.error
+        : 'An unknown error has occurred';
+      dispatch({ type: `${name}_FAILURE`, error: errorMessage });
+    }
   }
 };
 
