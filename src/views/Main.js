@@ -1,13 +1,14 @@
-import React from "react";
-import CashierMain from "./cashier/CashierPage";
-import ShopperMain from "./shopper/ShopperPage";
-import Navbar from "../components/Navbar";
-import { Redirect } from "react-router-dom";
-import { connect } from "react-redux";
+import React from 'react';
+import CashierMain from './cashier/CashierPage';
+import ShopperMain from './shopper/ShopperPage';
+import Navbar from '../components/Navbar';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-function Main({ auth }) {
+export function Main({ auth }) {
   if (auth && auth.isAuthenticated && auth.user) {
-    const RenderComponent = auth.user.type === "cashier" ? <CashierMain /> : <ShopperMain />;
+    const RenderComponent =
+      auth.user.type === 'cashier' ? <CashierMain /> : <ShopperMain />;
     return (
       <React.Fragment>
         <Navbar />
@@ -15,7 +16,7 @@ function Main({ auth }) {
       </React.Fragment>
     );
   } else {
-    return <Redirect to="/login" />;
+    return <Redirect to='/login' />;
   }
 }
 

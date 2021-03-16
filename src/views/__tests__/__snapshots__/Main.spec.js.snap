@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Main should correctly render 1`] = `
+<Redirect
+  to="/login"
+/>
+`;
+
+exports[`Main should correctly render with props 1`] = `
+<Redirect
+  to="/login"
+/>
+`;

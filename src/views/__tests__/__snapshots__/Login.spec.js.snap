@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login should correctly render 1`] = `
+<WithStyles(ForwardRef(Container))
+  className="makeStyles-root-1"
+  maxWidth="md"
+>
+  <WithStyles(ForwardRef(Typography))
+    className="makeStyles-heading-2"
+    variant="h4"
+  >
+    NextGenShop Login
+  </WithStyles(ForwardRef(Typography))>
+  <WithStyles(ForwardRef(TextField))
+    id="emailTextField"
+    label="Email"
+    onChange={[Function]}
+    value=""
+  />
+  <WithStyles(ForwardRef(TextField))
+    id="passwordTextField"
+    label="Password"
+    onChange={[Function]}
+    type="password"
+    value=""
+  />
+  <WithStyles(ForwardRef(Button))
+    className="makeStyles-mt-4"
+    color="primary"
+    id="loginButton"
+    onClick={[Function]}
+    variant="contained"
+  >
+    Login
+  </WithStyles(ForwardRef(Button))>
+  <WithStyles(ForwardRef(Divider))
+    className="makeStyles-mt-4"
+  />
+  <div
+    className="makeStyles-mt-4"
+  >
+    <WithStyles(ForwardRef(Button))
+      className="makeStyles-mr-3"
+      id="loginShopperButton"
+      onClick={[Function]}
+      variant="contained"
+    >
+      Login as shopper
+    </WithStyles(ForwardRef(Button))>
+    <WithStyles(ForwardRef(Button))
+      id="loginCashierButton"
+      onClick={[Function]}
+      variant="contained"
+    >
+      Login as cashier
+    </WithStyles(ForwardRef(Button))>
+  </div>
+  <WithStyles(ForwardRef(Typography))
+    className="makeStyles-mt-4"
+    variant="caption"
+  >
+    These buttons are for testing purposes.
+  </WithStyles(ForwardRef(Typography))>
+</WithStyles(ForwardRef(Container))>
+`;
+
+exports[`Login should correctly render with props 1`] = `
+<WithStyles(ForwardRef(Container))
+  className="makeStyles-root-1"
+  maxWidth="md"
+>
+  <WithStyles(ForwardRef(Typography))
+    className="makeStyles-heading-2"
+    variant="h4"
+  >
+    NextGenShop Login
+  </WithStyles(ForwardRef(Typography))>
+  <WithStyles(ForwardRef(TextField))
+    id="emailTextField"
+    label="Email"
+    onChange={[Function]}
+    value=""
+  />
+  <WithStyles(ForwardRef(TextField))
+    id="passwordTextField"
+    label="Password"
+    onChange={[Function]}
+    type="password"
+    value=""
+  />
+  <WithStyles(ForwardRef(Button))
+    className="makeStyles-mt-4"
+    color="primary"
+    id="loginButton"
+    onClick={[Function]}
+    variant="contained"
+  >
+    Login
+  </WithStyles(ForwardRef(Button))>
+  <WithStyles(ForwardRef(Divider))
+    className="makeStyles-mt-4"
+  />
+  <div
+    className="makeStyles-mt-4"
+  >
+    <WithStyles(ForwardRef(Button))
+      className="makeStyles-mr-3"
+      id="loginShopperButton"
+      onClick={[Function]}
+      variant="contained"
+    >
+      Login as shopper
+    </WithStyles(ForwardRef(Button))>
+    <WithStyles(ForwardRef(Button))
+      id="loginCashierButton"
+      onClick={[Function]}
+      variant="contained"
+    >
+      Login as cashier
+    </WithStyles(ForwardRef(Button))>
+  </div>
+  <WithStyles(ForwardRef(Typography))
+    className="makeStyles-mt-4"
+    variant="caption"
+  >
+    These buttons are for testing purposes.
+  </WithStyles(ForwardRef(Typography))>
+</WithStyles(ForwardRef(Container))>
+`;

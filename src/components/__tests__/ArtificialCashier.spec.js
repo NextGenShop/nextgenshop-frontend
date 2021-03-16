@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { ArtificialCashier } from '../ArtificialCashier';
 import mockBasketItems from '../../store/mock/MockBasketItems.json';
 import mockProducts from '../../store/mock/MockSupermarketDataset.json';
@@ -74,4 +74,16 @@ describe('ArtificialCashier', () => {
     expect(mockGetTextToSpeechToken).toBeCalledTimes(1);
     expect(mockGetAssistantToken).toBeCalledTimes(1);
   });
+
+  // test('should show listening text when button pressed', () => {
+  //   const component = mount(<ArtificialCashier {...defaultProps} />);
+  //   component.find('#startListenButton').first().simulate('click');
+  //   expect(component.find('#listenText').first().text()).toEqual(
+  //     'Listening...'
+  //   );
+  //   component.find('#stopListenButton').first().simulate('click');
+  //   expect(component.find('#listenText').first().text()).toEqual(
+  //     'Press the mic icon and start speaking'
+  //   );
+  // });
 });

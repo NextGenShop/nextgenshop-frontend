@@ -306,6 +306,7 @@ export function ArtificialCashier({
 
   const ListenButton = listening ? (
     <IconButton
+      id='stopListenButton'
       color='secondary'
       aria-label='stop'
       onClick={() => setListening(false)}
@@ -313,7 +314,12 @@ export function ArtificialCashier({
       <StopIcon fontSize='large' />
     </IconButton>
   ) : (
-    <IconButton color='primary' aria-label='speak' onClick={startListening}>
+    <IconButton
+      id='startListenButton'
+      color='primary'
+      aria-label='speak'
+      onClick={startListening}
+    >
       <MicRoundedIcon fontSize='large' />
     </IconButton>
   );
@@ -339,7 +345,7 @@ export function ArtificialCashier({
               </Typography>
             )}
             <br />
-            <Typography variant='subtitle2'>
+            <Typography id='listenText' variant='subtitle2'>
               {listening
                 ? 'Listening...'
                 : 'Press the mic icon and start speaking'}
