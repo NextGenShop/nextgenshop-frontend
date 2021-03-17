@@ -56,3 +56,29 @@ exports[`Navbar should correctly render 1`] = `
   </WithStyles(ForwardRef(AppBar))>
 </div>
 `;
+
+exports[`Navbar should correctly render with props 1`] = `
+<div
+  className="makeStyles-root-1"
+>
+  <WithStyles(ForwardRef(AppBar))
+    position="sticky"
+  >
+    <WithStyles(ForwardRef(Toolbar))>
+      <WithStyles(ForwardRef(Typography))
+        className="makeStyles-title-2"
+        variant="h6"
+      >
+        NextGenShop
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Button))
+        color="inherit"
+        id="logoutButton"
+        onClick={[Function]}
+      >
+        Logout
+      </WithStyles(ForwardRef(Button))>
+    </WithStyles(ForwardRef(Toolbar))>
+  </WithStyles(ForwardRef(AppBar))>
+</div>
+`;

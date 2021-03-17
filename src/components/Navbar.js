@@ -35,7 +35,7 @@ export function Navbar({ auth, dispatchLogout }) {
             {config.APP_NAME}
           </Typography>
           {auth && auth.isAuthenticated ? (
-            <Button color='inherit' onClick={handleLogout}>
+            <Button id='logoutButton' color='inherit' onClick={handleLogout}>
               Logout
             </Button>
           ) : (
@@ -58,7 +58,7 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   dispatchLogout: () => dispatch(actions.logout()),
 });
 

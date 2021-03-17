@@ -1,11 +1,283 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProductCatalog should correctly render 1`] = `
+exports[`ProductCatalog should correctly render table view 1`] = `
+<WithStyles(ForwardRef(TableContainer))
+  className="makeStyles-root-1"
+>
+  <WithStyles(ForwardRef(Table))
+    aria-label="product catalog table"
+    size="small"
+  >
+    <WithStyles(ForwardRef(TableBody)) />
+  </WithStyles(ForwardRef(Table))>
+</WithStyles(ForwardRef(TableContainer))>
+`;
+
+exports[`ProductCatalog should correctly render table view with products 1`] = `
+<WithStyles(ForwardRef(TableContainer))
+  className="makeStyles-root-1"
+>
+  <WithStyles(ForwardRef(Table))
+    aria-label="product catalog table"
+    size="small"
+  >
+    <WithStyles(ForwardRef(TableBody))>
+      <WithStyles(ForwardRef(TableRow))
+        key="0"
+      >
+        <WithStyles(ForwardRef(Tooltip))
+          title={
+            <img
+              alt="product"
+              className="makeStyles-media-7"
+              src="placeholder_image.png"
+            />
+          }
+        >
+          <WithStyles(ForwardRef(TableCell))
+            component="th"
+            scope="row"
+          >
+            Milk Chocolate Biscuits 9 Pack
+          </WithStyles(ForwardRef(TableCell))>
+        </WithStyles(ForwardRef(Tooltip))>
+        <WithStyles(ForwardRef(TableCell))
+          align="right"
+        >
+          £ 
+          1.50
+        </WithStyles(ForwardRef(TableCell))>
+        <WithStyles(ForwardRef(TableCell))
+          align="right"
+        >
+          <WithStyles(ForwardRef(Button))
+            aria-label="addToBasketButton"
+            color="primary"
+            onClick={[Function]}
+            size="small"
+            variant="contained"
+          >
+            Add to basket
+          </WithStyles(ForwardRef(Button))>
+        </WithStyles(ForwardRef(TableCell))>
+      </WithStyles(ForwardRef(TableRow))>
+      <WithStyles(ForwardRef(TableRow))
+        key="1"
+      >
+        <WithStyles(ForwardRef(Tooltip))
+          title={
+            <img
+              alt="product"
+              className="makeStyles-media-7"
+              src="placeholder_image.png"
+            />
+          }
+        >
+          <WithStyles(ForwardRef(TableCell))
+            component="th"
+            scope="row"
+          >
+            Cookie Dough Vanilla Ice Cream 465Ml
+          </WithStyles(ForwardRef(TableCell))>
+        </WithStyles(ForwardRef(Tooltip))>
+        <WithStyles(ForwardRef(TableCell))
+          align="right"
+        >
+          £ 
+          4.50
+        </WithStyles(ForwardRef(TableCell))>
+        <WithStyles(ForwardRef(TableCell))
+          align="right"
+        >
+          <WithStyles(ForwardRef(Button))
+            aria-label="addToBasketButton"
+            color="primary"
+            onClick={[Function]}
+            size="small"
+            variant="contained"
+          >
+            Add to basket
+          </WithStyles(ForwardRef(Button))>
+        </WithStyles(ForwardRef(TableCell))>
+      </WithStyles(ForwardRef(TableRow))>
+    </WithStyles(ForwardRef(TableBody))>
+  </WithStyles(ForwardRef(Table))>
+</WithStyles(ForwardRef(TableContainer))>
+`;
+
+exports[`ProductCatalog should correctly render with products 1`] = `
 <WithStyles(ForwardRef(Grid))
   className="makeStyles-root-1"
   container={true}
   spacing={2}
-/>
+>
+  <WithStyles(ForwardRef(Grid))
+    item={true}
+    key="0"
+    md={4}
+  >
+    <WithStyles(ForwardRef(Card))
+      className="makeStyles-card-3"
+    >
+      <div
+        className="makeStyles-details-4"
+      >
+        <WithStyles(ForwardRef(CardContent))
+          className="makeStyles-content-5"
+        >
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-productText-8"
+            gutterBottom={true}
+            variant="subtitle2"
+          >
+            Milk Chocolate Biscuits 9 Pack
+          </WithStyles(ForwardRef(Typography))>
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-smallText-9"
+            color="textSecondary"
+            component="p"
+            display="inline"
+            variant="body2"
+          >
+            Price:
+             
+          </WithStyles(ForwardRef(Typography))>
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-smallText-9"
+            color="primary"
+            component="p"
+            display="inline"
+            variant="body2"
+          >
+            £ 
+            1.50
+          </WithStyles(ForwardRef(Typography))>
+          <br />
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-smallText-9"
+            color="textSecondary"
+            component="p"
+            display="inline"
+            variant="body2"
+          >
+            Retailer:
+             
+          </WithStyles(ForwardRef(Typography))>
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-smallText-9"
+            color="primary"
+            component="p"
+            display="inline"
+            variant="body2"
+          >
+            Mock Retailer A
+          </WithStyles(ForwardRef(Typography))>
+        </WithStyles(ForwardRef(CardContent))>
+        <div
+          className="makeStyles-buttons-6"
+        >
+          <WithStyles(ForwardRef(Button))
+            aria-label="addToBasketButton"
+            className="makeStyles-addButton-11"
+            color="primary"
+            onClick={[Function]}
+            size="small"
+            variant="contained"
+          >
+            Add
+          </WithStyles(ForwardRef(Button))>
+        </div>
+      </div>
+      <WithStyles(ForwardRef(CardMedia))
+        className="makeStyles-media-7"
+        image="placeholder_image.png"
+      />
+    </WithStyles(ForwardRef(Card))>
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    item={true}
+    key="1"
+    md={4}
+  >
+    <WithStyles(ForwardRef(Card))
+      className="makeStyles-card-3"
+    >
+      <div
+        className="makeStyles-details-4"
+      >
+        <WithStyles(ForwardRef(CardContent))
+          className="makeStyles-content-5"
+        >
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-productText-8"
+            gutterBottom={true}
+            variant="subtitle2"
+          >
+            Cookie Dough Vanilla Ice Cream 465Ml
+          </WithStyles(ForwardRef(Typography))>
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-smallText-9"
+            color="textSecondary"
+            component="p"
+            display="inline"
+            variant="body2"
+          >
+            Price:
+             
+          </WithStyles(ForwardRef(Typography))>
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-smallText-9"
+            color="primary"
+            component="p"
+            display="inline"
+            variant="body2"
+          >
+            £ 
+            4.50
+          </WithStyles(ForwardRef(Typography))>
+          <br />
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-smallText-9"
+            color="textSecondary"
+            component="p"
+            display="inline"
+            variant="body2"
+          >
+            Retailer:
+             
+          </WithStyles(ForwardRef(Typography))>
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-smallText-9"
+            color="primary"
+            component="p"
+            display="inline"
+            variant="body2"
+          >
+            Mock Retailer A
+          </WithStyles(ForwardRef(Typography))>
+        </WithStyles(ForwardRef(CardContent))>
+        <div
+          className="makeStyles-buttons-6"
+        >
+          <WithStyles(ForwardRef(Button))
+            aria-label="addToBasketButton"
+            className="makeStyles-addButton-11"
+            color="primary"
+            onClick={[Function]}
+            size="small"
+            variant="contained"
+          >
+            Add
+          </WithStyles(ForwardRef(Button))>
+        </div>
+      </div>
+      <WithStyles(ForwardRef(CardMedia))
+        className="makeStyles-media-7"
+        image="placeholder_image.png"
+      />
+    </WithStyles(ForwardRef(Card))>
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Grid))>
 `;
 
 exports[`ProductCatalog should correctly render with props 1`] = `

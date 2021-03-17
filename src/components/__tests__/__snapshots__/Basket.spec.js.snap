@@ -34,6 +34,151 @@ exports[`Basket should correctly render 1`] = `
 </Fragment>
 `;
 
+exports[`Basket should correctly render a single basket item 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(List))
+    className="makeStyles-list-1"
+  >
+    <WithStyles(ForwardRef(ListItem))
+      key="0"
+    >
+      <WithStyles(ForwardRef(ListItemAvatar))>
+        <WithStyles(ForwardRef(Avatar))
+          src="placeholder_image.png"
+        />
+      </WithStyles(ForwardRef(ListItemAvatar))>
+      <WithStyles(ForwardRef(ListItemText))
+        primary="Milk Chocolate Biscuits 9 Pack"
+        secondary="Qty: 1"
+      />
+      <WithStyles(ForwardRef(ListItemSecondaryAction))>
+        <WithStyles(ForwardRef(Typography))
+          className="makeStyles-price-2"
+          display="inline"
+        >
+          £
+          1.50
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(IconButton))
+          aria-label="deleteButton"
+          edge="end"
+          onClick={[Function]}
+        >
+          <Memo([object Object]) />
+        </WithStyles(ForwardRef(IconButton))>
+      </WithStyles(ForwardRef(ListItemSecondaryAction))>
+    </WithStyles(ForwardRef(ListItem))>
+    <WithStyles(ForwardRef(ListItem))
+      key="1"
+    >
+      <WithStyles(ForwardRef(ListItemAvatar))>
+        <WithStyles(ForwardRef(Avatar))
+          src="placeholder_image.png"
+        />
+      </WithStyles(ForwardRef(ListItemAvatar))>
+      <WithStyles(ForwardRef(ListItemText))
+        primary="Cookie Dough Vanilla Ice Cream 465Ml"
+        secondary="Qty: 1"
+      />
+      <WithStyles(ForwardRef(ListItemSecondaryAction))>
+        <WithStyles(ForwardRef(Typography))
+          className="makeStyles-price-2"
+          display="inline"
+        >
+          £
+          4.50
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(IconButton))
+          aria-label="deleteButton"
+          edge="end"
+          onClick={[Function]}
+        >
+          <Memo([object Object]) />
+        </WithStyles(ForwardRef(IconButton))>
+      </WithStyles(ForwardRef(ListItemSecondaryAction))>
+    </WithStyles(ForwardRef(ListItem))>
+  </WithStyles(ForwardRef(List))>
+  <WithStyles(ForwardRef(Typography))
+    className="makeStyles-total-3"
+    component="div"
+    variant="h6"
+  >
+    Total:
+     
+    <WithStyles(ForwardRef(Typography))
+      display="inline"
+      variant="h6"
+    >
+      £ 
+      0
+    </WithStyles(ForwardRef(Typography))>
+  </WithStyles(ForwardRef(Typography))>
+  <Link
+    to="/checkout"
+  >
+     Checkout 
+  </Link>
+</Fragment>
+`;
+
+exports[`Basket should correctly render multiple basket items 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(List))
+    className="makeStyles-list-1"
+  >
+    <WithStyles(ForwardRef(ListItem))
+      key="0"
+    >
+      <WithStyles(ForwardRef(ListItemAvatar))>
+        <WithStyles(ForwardRef(Avatar))
+          src="placeholder_image.png"
+        />
+      </WithStyles(ForwardRef(ListItemAvatar))>
+      <WithStyles(ForwardRef(ListItemText))
+        primary="Milk Chocolate Biscuits 9 Pack"
+        secondary="Qty: 1"
+      />
+      <WithStyles(ForwardRef(ListItemSecondaryAction))>
+        <WithStyles(ForwardRef(Typography))
+          className="makeStyles-price-2"
+          display="inline"
+        >
+          £
+          1.50
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(IconButton))
+          aria-label="deleteButton"
+          edge="end"
+          onClick={[Function]}
+        >
+          <Memo([object Object]) />
+        </WithStyles(ForwardRef(IconButton))>
+      </WithStyles(ForwardRef(ListItemSecondaryAction))>
+    </WithStyles(ForwardRef(ListItem))>
+  </WithStyles(ForwardRef(List))>
+  <WithStyles(ForwardRef(Typography))
+    className="makeStyles-total-3"
+    component="div"
+    variant="h6"
+  >
+    Total:
+     
+    <WithStyles(ForwardRef(Typography))
+      display="inline"
+      variant="h6"
+    >
+      £ 
+      0
+    </WithStyles(ForwardRef(Typography))>
+  </WithStyles(ForwardRef(Typography))>
+  <Link
+    to="/checkout"
+  >
+     Checkout 
+  </Link>
+</Fragment>
+`;
+
 exports[`Basket should correctly render with props 1`] = `
 <Fragment>
   <WithStyles(ForwardRef(List))

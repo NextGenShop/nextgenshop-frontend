@@ -16,6 +16,7 @@ exports[`ArtificialCashier should correctly render with props 1`] = `
   >
     <WithStyles(ForwardRef(Typography))
       gutterBottom={true}
+      id="loadingText"
       variant="subtitle2"
     >
       Loading... Please wait

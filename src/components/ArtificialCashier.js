@@ -300,8 +300,10 @@ export function ArtificialCashier({
 
   const stopAudio = () => {
     setResponseText('');
-    audioRef.current.pause();
-    audioRef.current.currentTime = 0;
+    try {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    } catch (err) {}
   };
 
   const ListenButton = listening ? (
@@ -339,7 +341,7 @@ export function ArtificialCashier({
               style={{ width: '350px', height: '350px' }}
               src={AvatarV2Model}
             ></model-viewer>
-            {responseText && (
+            {responseText.trim().length > 0 && (
               <Typography className={classes.transcript} variant='h6'>
                 {responseText}
               </Typography>
@@ -354,7 +356,7 @@ export function ArtificialCashier({
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <Typography variant='subtitle2' gutterBottom>
+            <Typography id='loadingText' variant='subtitle2' gutterBottom>
               Loading... Please wait
             </Typography>
             <CircularProgress size={30} />
@@ -377,7 +379,8 @@ const mapStateToProps = (state) => ({
   products: state.product.products,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+// exported for unit testing
+export const mapDispatchToProps = (dispatch) => ({
   dispatchGetSpeechToTextToken: () => dispatch(actions.getSpeechToTextToken()),
   dispatchGetTextToSpeechToken: () => dispatch(actions.getTextToSpeechToken()),
   dispatchGetAssistantToken: () => dispatch(actions.getAssistantToken()),

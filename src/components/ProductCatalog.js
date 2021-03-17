@@ -114,6 +114,7 @@ export function ProductCatalog({
                 </TableCell>
                 <TableCell align='right'>
                   <Button
+                    aria-label='addToBasketButton'
                     variant='contained'
                     size='small'
                     color='primary'
@@ -183,6 +184,7 @@ export function ProductCatalog({
                 <div className={classes.buttons}>
                   <Button
                     className={classes.addButton}
+                    aria-label='addToBasketButton'
                     variant='contained'
                     size='small'
                     color='primary'
@@ -212,7 +214,7 @@ const mapStateToProps = (state) => ({
   basket: state.basket,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   dispatchGetProducts: (query, retailer, limit) =>
     dispatch(productActions.getProducts(query, retailer, limit)),
   dispatchUpdateBasket: (shopperId, basketData) =>
