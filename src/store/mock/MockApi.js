@@ -1,21 +1,19 @@
-import mockUsers from './MockUsers.json';
-import { types as authTypes } from '../api/auth';
-import { types as productTypes } from '../api/product';
+import mockUsers from "./MockUsers.json";
+import { types as authTypes } from "../api/auth";
 
 const handleRequest = (dispatch, name, req) => {
   let res = {};
   if (name === authTypes.GET_USER) {
-    const token = req.headers.authorization.split(' ')[1];
+    const token = req.headers.authorization.split(" ")[1];
     res = mockUsers.find((user) => user.token === token);
     if (res) {
       dispatch({ type: `${name}_SUCCESS`, response: res });
     } else {
-      dispatch({ type: `${name}_FAILURE`, error: 'Invalid token' });
+      dispatch({ type: `${name}_FAILURE`, error: "Invalid token" });
     }
   } else if (name === authTypes.LOGIN) {
     res = mockUsers.find(
-      (user) =>
-        user.email === req.data.email && user.password === req.data.password
+      (user) => user.email === req.data.email && user.password === req.data.password
     );
     if (res) {
       dispatch({
@@ -25,7 +23,7 @@ const handleRequest = (dispatch, name, req) => {
     } else {
       dispatch({
         type: `${name}_FAILURE`,
-        error: 'Incorrect email or password',
+        error: "Incorrect email or password",
       });
     }
   } else if (name === authTypes.LOGOUT) {
