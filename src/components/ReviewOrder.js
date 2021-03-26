@@ -5,7 +5,6 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Grid from "@material-ui/core/Grid";
-import basket from "../components/Basket";
 import { connect } from "react-redux";
 
 // const products = [
@@ -42,26 +41,26 @@ const useStyles = makeStyles((theme) => ({
 export function Review({ basket }) {
   const classes = useStyles();
 
-  console.log(basket);
-
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Order summary
       </Typography>
       <List disablePadding>
-        {basket.items.map((item) => (
-          <ListItem className={classes.list} key={item.product.name}>
-            <ListItemText primary={item.product.name} />
-            <Typography variant="body2">
-              £{(item.product.price * item.quantity).toFixed(2)}
-            </Typography>
-          </ListItem>
-        ))}
+        {basket &&
+          basket.items &&
+          basket.items.map((item) => (
+            <ListItem className={classes.list} key={item.product.name}>
+              <ListItemText primary={item.product.name} />
+              <Typography variant="body2">
+                £{(item.product.price * item.quantity).toFixed(2)}
+              </Typography>
+            </ListItem>
+          ))}
         <ListItem className={classes.list}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            £{basket.totalPrice}
+            £{basket ? basket.totalPrice : 0}
           </Typography>
         </ListItem>
       </List>
@@ -95,7 +94,6 @@ export function Review({ basket }) {
   );
 }
 const mapStateToProps = (state) => ({
-  products: state.product.products,
   basket: state.basket,
 });
 
