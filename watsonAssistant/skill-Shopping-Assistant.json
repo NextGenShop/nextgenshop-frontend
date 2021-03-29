@@ -1,0 +1,1149 @@
+{
+  "intents": [
+    {
+      "intent": "add_product",
+      "examples": [
+        {
+          "text": "Add one pack of biscuits to my basket.",
+          "mentions": [
+            {
+              "entity": "product_name",
+              "location": [
+                16,
+                24
+              ]
+            }
+          ]
+        },
+        {
+          "text": "Can I have three frozen pizzas please.",
+          "mentions": [
+            {
+              "entity": "product_name",
+              "location": [
+                17,
+                30
+              ]
+            }
+          ]
+        },
+        {
+          "text": "Could I get 4 tubs of peanut butter.",
+          "mentions": [
+            {
+              "entity": "product_name",
+              "location": [
+                22,
+                35
+              ]
+            }
+          ]
+        },
+        {
+          "text": "Do you have some milk.",
+          "mentions": [
+            {
+              "entity": "product_name",
+              "location": [
+                17,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "text": "I'd like to order 2 bottles of wine.",
+          "mentions": [
+            {
+              "entity": "product_name",
+              "location": [
+                20,
+                35
+              ]
+            }
+          ]
+        },
+        {
+          "text": "I need bread.",
+          "mentions": [
+            {
+              "entity": "product_name",
+              "location": [
+                7,
+                12
+              ]
+            }
+          ]
+        },
+        {
+          "text": "I want coffee beans.",
+          "mentions": [
+            {
+              "entity": "product_name",
+              "location": [
+                7,
+                19
+              ]
+            }
+          ]
+        },
+        {
+          "text": "I would like some eggs please.",
+          "mentions": [
+            {
+              "entity": "product_name",
+              "location": [
+                18,
+                22
+              ]
+            }
+          ]
+        }
+      ],
+      "description": "Request a product to add to a customer's shopping basket"
+    },
+    {
+      "intent": "cancel",
+      "examples": [
+        {
+          "text": "Cancel."
+        },
+        {
+          "text": "No."
+        },
+        {
+          "text": "No thank you."
+        },
+        {
+          "text": "That's not right."
+        },
+        {
+          "text": "That's wrong."
+        }
+      ],
+      "description": "Cancel an action"
+    },
+    {
+      "intent": "check_basket",
+      "examples": [
+        {
+          "text": "Can you show me my basket."
+        },
+        {
+          "text": "Can you show me my order please."
+        },
+        {
+          "text": "Can you tell me my order so far."
+        },
+        {
+          "text": "Show me my basket please."
+        },
+        {
+          "text": "What does my basket look like."
+        },
+        {
+          "text": "What have I ordered."
+        },
+        {
+          "text": "What's in my basket."
+        }
+      ],
+      "description": "Check what items are currently in the user's basket"
+    },
+    {
+      "intent": "checkout",
+      "examples": [
+        {
+          "text": "Can I pay for my order now"
+        },
+        {
+          "text": "I'd like to check out please"
+        },
+        {
+          "text": "I'd like to finish my order please"
+        },
+        {
+          "text": "I think that's everything for me"
+        },
+        {
+          "text": "Take me to checkout please"
+        },
+        {
+          "text": "That's all thanks"
+        },
+        {
+          "text": "That's it"
+        }
+      ],
+      "description": "Finish a shopping experience and start the checkout procedure"
+    },
+    {
+      "intent": "confirm",
+      "examples": [
+        {
+          "text": "great"
+        },
+        {
+          "text": "Okay."
+        },
+        {
+          "text": "Thanks."
+        },
+        {
+          "text": "That's correct."
+        },
+        {
+          "text": "that's right"
+        },
+        {
+          "text": "Yep."
+        },
+        {
+          "text": "Yes."
+        }
+      ],
+      "description": "Confirmation of an action"
+    }
+  ],
+  "entities": [
+    {
+      "entity": "product_name",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "biscuits",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "bottles of wine",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "bread",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "coffee beans",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "eggs",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "frozen pizzas",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "milk",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "peanut butter",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-number",
+      "values": [],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    },
+    "from-sample": true
+  },
+  "webhooks": [
+    {
+      "url": "https://eu-gb.functions.appdomain.cloud/api/v1/web/dilan.t.patel.16%40ucl.ac.uk_dev/default/NextGenShopper.json",
+      "name": "main_webhook",
+      "headers": []
+    }
+  ],
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_3_1612962354485",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "No product name found."
+              }
+            ],
+            "response_type": "text"
+          }
+        ]
+      },
+      "parent": "slot_2_1612963566382",
+      "conditions": "",
+      "event_name": "nomatch",
+      "dialog_node": "handler_10_1612964894432",
+      "previous_sibling": "handler_3_1612963566391"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1612963566382",
+      "context": {
+        "product_name": "@product_name"
+      },
+      "conditions": "@product_name",
+      "event_name": "input",
+      "dialog_node": "handler_1_1612963566391"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1612963585036",
+      "event_name": "focus",
+      "dialog_node": "handler_2_1612963585037",
+      "previous_sibling": "handler_9_1612963585037"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "I'm not sure what product you're looking for"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_2_1612963566382",
+      "event_name": "focus",
+      "dialog_node": "handler_3_1612963566391",
+      "previous_sibling": "handler_1_1612963566391"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "No product quantity found."
+              }
+            ],
+            "response_type": "text"
+          }
+        ]
+      },
+      "parent": "slot_5_1612963585036",
+      "event_name": "nomatch",
+      "dialog_node": "handler_4_1612964925304",
+      "previous_sibling": "handler_2_1612963585037"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1612963585036",
+      "context": {
+        "product_quantity": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_9_1612963585037"
+    },
+    {
+      "type": "standard",
+      "title": "Confirm product",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Just to confirm, that's $product_quantity of $product_name"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1613133677609",
+      "conditions": "$product_quantity != null",
+      "dialog_node": "node_10_1613136841726",
+      "previous_sibling": "node_7_1613136490585"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't quite catch that. You can either confirm your selection, change the quantity or cancel and start looking for a new product."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_10_1613136841726",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_10_1613136841726"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_10_1613138363466",
+      "previous_sibling": "node_1_1613137623326"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_7_1613136490585",
+      "context": {
+        "product_quantity": "@sys-number"
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_10_1613136841726"
+      },
+      "conditions": "(@sys-number OR @sys-number == 0) AND @sys-number > 0",
+      "dialog_node": "node_1_1613136652181"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "That wasn't a valid quantity, you can try again or cancel and search for a new product."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1613136490585",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_7_1613136490585"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_1_1613136940218",
+      "previous_sibling": "node_1_1613561960451"
+    },
+    {
+      "type": "standard",
+      "title": "Cancel",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "No worries, let's start from the beginning again."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_10_1613136841726",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_6_1612965273484"
+      },
+      "conditions": "#cancel",
+      "dialog_node": "node_1_1613137623326",
+      "previous_sibling": "node_1_1613139058519"
+    },
+    {
+      "type": "standard",
+      "title": "Change quantity",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Oh, slightly different. Let me update that for you"
+              },
+              {
+                "text": "Oh, let me quickly update that."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "parent": "node_10_1613136841726",
+      "context": {
+        "product_quantity": "@sys-number"
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_7_1613136490585"
+      },
+      "conditions": "(@sys-number OR @sys-number == 0)",
+      "dialog_node": "node_1_1613139058519",
+      "previous_sibling": "node_2_1613137080569"
+    },
+    {
+      "type": "standard",
+      "title": "Cancel",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "No worries, let's start from the beginning again."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1613138142891",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_6_1612965273484"
+      },
+      "conditions": "#cancel",
+      "dialog_node": "node_1_1613561825814",
+      "previous_sibling": "node_2_1613133677609"
+    },
+    {
+      "type": "standard",
+      "title": "Cancel",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "No worries, let's start from the beginning again."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1613136490585",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_6_1612965273484"
+      },
+      "conditions": "#cancel",
+      "dialog_node": "node_1_1613561960451",
+      "previous_sibling": "node_1_1613136652181"
+    },
+    {
+      "type": "standard",
+      "title": "Specify product",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "You selected $product_name"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1613138142891",
+      "context": {
+        "product_id": "<? $webhook_result_1.product_ids[@sys-number - 1] ?>",
+        "product_name": "<? $webhook_result_1.product_names[@sys-number - 1] ?>",
+        "product_specifiy_number": "<? @sys-number - 1 ?>"
+      },
+      "next_step": {
+        "behavior": "skip_user_input"
+      },
+      "conditions": "(@sys-number OR @sys-number == 0) AND @sys-number < $webhook_result_1.product_names.size()",
+      "dialog_node": "node_2_1613133677609"
+    },
+    {
+      "type": "standard",
+      "title": "Confirm",
+      "parent": "node_10_1613136841726",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_6_1612965273484"
+      },
+      "conditions": "#confirm",
+      "dialog_node": "node_2_1613137080569"
+    },
+    {
+      "type": "frame",
+      "title": "Add product",
+      "actions": [
+        {
+          "name": "main_webhook",
+          "type": "webhook",
+          "parameters": {
+            "query_type": "product_search",
+            "product_name": "$product_name"
+          },
+          "result_variable": "webhook_result_1"
+        }
+      ],
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "skip_user_input"
+      },
+      "conditions": "#add_product",
+      "dialog_node": "node_3_1612962354485",
+      "previous_sibling": "node_8_1613561679552"
+    },
+    {
+      "type": "standard",
+      "title": "Check product (more than 1 result)",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "We have a couple different options: \n<? $webhook_result_1.product_names ?>. Which one would you like (Specify the number in the list for the item you want)?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "user_defined": {
+              "action_type": "filter_product",
+              "product_ids": "<? $webhook_result_1.product_ids ?>",
+              "product_names": "<$webhook_result_1.product_names ?>",
+              "product_query_string": "<? $product_name ?>"
+            },
+            "response_type": "user_defined"
+          }
+        ]
+      },
+      "parent": "node_3_1612962354485",
+      "conditions": "$webhook_result_1.product_names.size() > 1",
+      "dialog_node": "node_3_1613138142891",
+      "previous_sibling": "node_5_1613138011783"
+    },
+    {
+      "type": "standard",
+      "title": "Check product (only 1 result)",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "We only have one of those in store: <? $webhook_result_1.product_names[0] ?>. Is this what you were looking for?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "user_defined": {
+              "action_type": "filter_product",
+              "product_ids": "<? $webhook_result_1.product_ids ?>",
+              "product_names": "<$webhook_result_1.product_names ?>",
+              "product_query_string": "<? $product_name ?>"
+            },
+            "response_type": "user_defined"
+          }
+        ]
+      },
+      "parent": "node_3_1612962354485",
+      "context": {},
+      "conditions": "$webhook_result_1.product_names.size() == 1",
+      "dialog_node": "node_5_1613138011783"
+    },
+    {
+      "type": "standard",
+      "title": "Reset context",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "How else can I help you?"
+              },
+              {
+                "text": "Is there anything else you'd like?"
+              },
+              {
+                "text": "What else can I do for you?"
+              },
+              {
+                "text": "Would you like anything else?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          },
+          {
+            "user_defined": {
+              "action_type": "reset_context"
+            },
+            "response_type": "user_defined"
+          }
+        ]
+      },
+      "context": {
+        "product_id": null,
+        "shopper_id": null,
+        "product_name": null,
+        "product_quantity": null,
+        "webhook_result_1": null,
+        "webhook_result_2": null,
+        "product_specifiy_number": null
+      },
+      "conditions": "true",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_6_1612965273484",
+      "previous_sibling": "Anything else"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "This stage shouldn't have been reached. Something went wrong, please start over."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1612962354485",
+      "conditions": "anything_else",
+      "dialog_node": "node_6_1613134177598",
+      "previous_sibling": "node_3_1613138142891"
+    },
+    {
+      "type": "standard",
+      "title": "Get shopperID",
+      "parent": "node_8_1613561679552",
+      "actions": [
+        {
+          "name": "main_webhook",
+          "type": "webhook",
+          "parameters": {
+            "query_type": "check_basket",
+            "shopper_id": "@sys-number"
+          },
+          "result_variable": "webhook_result_2"
+        }
+      ],
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "@sys-number",
+      "dialog_node": "node_6_1613563215640"
+    },
+    {
+      "type": "standard",
+      "title": "Check for quantity",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "How many of those would you like?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1613133677609",
+      "conditions": "$product_quantity == null || $product_quantity == \"0\"",
+      "dialog_node": "node_7_1613136490585"
+    },
+    {
+      "type": "standard",
+      "title": "Cancel",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ah sorry, you can always check back later to see if we've updated our product catalogue."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_5_1613138011783",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_6_1612965273484"
+      },
+      "conditions": "#cancel",
+      "dialog_node": "node_7_1613138740210",
+      "previous_sibling": "node_9_1613138699464"
+    },
+    {
+      "type": "standard",
+      "title": "Check basket",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "One second, we just need your user id."
+              },
+              {
+                "text": "Could you give use your user id?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#check_basket",
+      "dialog_node": "node_8_1613561679552",
+      "previous_sibling": "node_8_1614964748189"
+    },
+    {
+      "type": "standard",
+      "title": "Checkout",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Great, let's take you to the checkout page then."
+              },
+              {
+                "text": "I'll redirect you to the checkout page then."
+              },
+              {
+                "text": "Great, let's get you to the checkout then."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          },
+          {
+            "user_defined": {
+              "action_type": "checkout"
+            },
+            "response_type": "user_defined"
+          }
+        ]
+      },
+      "conditions": "#checkout",
+      "dialog_node": "node_8_1614964748189",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "Confirm",
+      "parent": "node_5_1613138011783",
+      "context": {
+        "product_id": "<? $webhook_result_1.product_ids[0] ?>",
+        "product_name": "<? $webhook_result_1.product_names[0] ?>"
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_7_1613136490585"
+      },
+      "conditions": "#confirm",
+      "dialog_node": "node_9_1613138699464"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Unfortunately we don't have anything that matches that in the store. Maybe try for another product?"
+              },
+              {
+                "text": "I don't think we have that in stock at the moment. You could try looking for something else."
+              },
+              {
+                "text": "Sorry, I couldn't find anything that matches that in the store. You could try searching for another product."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "parent": "node_3_1612962354485",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_6_1612965273484"
+      },
+      "conditions": "$webhook_result_1.status == 1",
+      "dialog_node": "response_1_1613138582328",
+      "previous_sibling": "response_4_1612963660420"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The total price of your basket is £<? $webhook_result_2.total_price ?>.  You should be able to see all the items to the right of your screen."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1613563215640",
+      "context": {
+        "shopper_id": "@sys-number"
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_6_1612965273484"
+      },
+      "conditions": "$webhook_result_2.status == 1",
+      "dialog_node": "response_1_1613563262091"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I'll have a look for that."
+              },
+              {
+                "text": "I'll check what we have."
+              },
+              {
+                "text": "Let me check what we have back here."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "parent": "node_3_1612962354485",
+      "conditions": "$webhook_result_1.status==1 && $webhook_result_1.product_names.size() > 0",
+      "dialog_node": "response_4_1612963660420",
+      "previous_sibling": "node_6_1613134177598"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "We had some trouble accessing our product database, please try again later."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_3_1612962354485",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_6_1612965273484"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "response_5_1613131330549",
+      "previous_sibling": "response_1_1613138582328"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Great! That's been added to your basket."
+              },
+              {
+                "text": "Cool, we'll place that in your basket for you."
+              },
+              {
+                "text": "That's been added to your basket."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "user_defined": {
+              "quantity": "<? $product_quantity ?>",
+              "product_id": "<? $product_id ?>",
+              "action_type": "add_basket"
+            },
+            "response_type": "user_defined"
+          }
+        ]
+      },
+      "parent": "node_2_1613137080569",
+      "conditions": "true",
+      "dialog_node": "response_5_1613561491463"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Something went wrong. Please try again from the beginning"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_6_1613563215640",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_6_1612965273484"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "response_8_1613563263543",
+      "previous_sibling": "response_1_1613563262091"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_3_1612962354485",
+      "variable": "$product_name",
+      "dialog_node": "slot_2_1612963566382",
+      "previous_sibling": "response_5_1613131330549"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_3_1612962354485",
+      "variable": "$product_quantity",
+      "dialog_node": "slot_5_1612963585036",
+      "previous_sibling": "slot_2_1612963566382"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. Welcome to the IBM NextGen Shopping Experience. To get started, simply ask for a product that you would like to order."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [
+    {
+      "text": "3"
+    }
+  ],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "intent_classification": {
+      "training_backend_version": "v2"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "Shopping Assistant",
+  "language": "en",
+  "description": ""
+}
