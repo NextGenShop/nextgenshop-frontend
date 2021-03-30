@@ -25,12 +25,18 @@ exports[`Basket should correctly render 1`] = `
       £ 
       0
     </WithStyles(ForwardRef(Typography))>
+    <Link
+      className="makeStyles-checkoutLink-4"
+      to="/checkout"
+    >
+      <WithStyles(ForwardRef(Button))
+        color="primary"
+        variant="outlined"
+      >
+        Checkout
+      </WithStyles(ForwardRef(Button))>
+    </Link>
   </WithStyles(ForwardRef(Typography))>
-  <Link
-    to="/checkout"
-  >
-     Checkout 
-  </Link>
 </Fragment>
 `;
 
@@ -83,12 +89,18 @@ exports[`Basket should correctly render a single basket item 1`] = `
       £ 
       0
     </WithStyles(ForwardRef(Typography))>
+    <Link
+      className="makeStyles-checkoutLink-4"
+      to="/checkout"
+    >
+      <WithStyles(ForwardRef(Button))
+        color="primary"
+        variant="outlined"
+      >
+        Checkout
+      </WithStyles(ForwardRef(Button))>
+    </Link>
   </WithStyles(ForwardRef(Typography))>
-  <Link
-    to="/checkout"
-  >
-     Checkout 
-  </Link>
 </Fragment>
 `;
 
@@ -170,12 +182,18 @@ exports[`Basket should correctly render multiple basket items 1`] = `
       £ 
       0
     </WithStyles(ForwardRef(Typography))>
+    <Link
+      className="makeStyles-checkoutLink-4"
+      to="/checkout"
+    >
+      <WithStyles(ForwardRef(Button))
+        color="primary"
+        variant="outlined"
+      >
+        Checkout
+      </WithStyles(ForwardRef(Button))>
+    </Link>
   </WithStyles(ForwardRef(Typography))>
-  <Link
-    to="/checkout"
-  >
-     Checkout 
-  </Link>
 </Fragment>
 `;
 
@@ -204,11 +222,17 @@ exports[`Basket should correctly render with props 1`] = `
       £ 
       0
     </WithStyles(ForwardRef(Typography))>
+    <Link
+      className="makeStyles-checkoutLink-4"
+      to="/checkout"
+    >
+      <WithStyles(ForwardRef(Button))
+        color="primary"
+        variant="outlined"
+      >
+        Checkout
+      </WithStyles(ForwardRef(Button))>
+    </Link>
   </WithStyles(ForwardRef(Typography))>
-  <Link
-    to="/checkout"
-  >
-     Checkout 
-  </Link>
 </Fragment>
 `;

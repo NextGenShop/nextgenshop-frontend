@@ -34,52 +34,7 @@ exports[`CheckoutPage should correctly render 1`] = `
     <WithStyles(ForwardRef(Paper))
       className="makeStyles-paper-3"
     >
-      <WithStyles(ForwardRef(Typography))
-        align="center"
-        component="h1"
-        variant="h4"
-      >
-        Checkout
-      </WithStyles(ForwardRef(Typography))>
-      <WithStyles(ForwardRef(Stepper))
-        activeStep={0}
-        className="makeStyles-stepper-4"
-      >
-        <WithStyles(ForwardRef(Step))
-          key="Shipping address"
-        >
-          <WithStyles(ForwardRef(StepLabel))>
-            Shipping address
-          </WithStyles(ForwardRef(StepLabel))>
-        </WithStyles(ForwardRef(Step))>
-        <WithStyles(ForwardRef(Step))
-          key="Payment details"
-        >
-          <WithStyles(ForwardRef(StepLabel))>
-            Payment details
-          </WithStyles(ForwardRef(StepLabel))>
-        </WithStyles(ForwardRef(Step))>
-        <WithStyles(ForwardRef(Step))
-          key="Review your order"
-        >
-          <WithStyles(ForwardRef(StepLabel))>
-            Review your order
-          </WithStyles(ForwardRef(StepLabel))>
-        </WithStyles(ForwardRef(Step))>
-      </WithStyles(ForwardRef(Stepper))>
-      <AddressForm />
-      <div
-        className="makeStyles-buttons-5"
-      >
-        <WithStyles(ForwardRef(Button))
-          className="makeStyles-button-6"
-          color="primary"
-          onClick={[Function]}
-          variant="contained"
-        >
-          Next
-        </WithStyles(ForwardRef(Button))>
-      </div>
+      <StepForm />
     </WithStyles(ForwardRef(Paper))>
   </main>
 </Fragment>
@@ -119,52 +74,7 @@ exports[`CheckoutPage should correctly render with props 1`] = `
     <WithStyles(ForwardRef(Paper))
       className="makeStyles-paper-3"
     >
-      <WithStyles(ForwardRef(Typography))
-        align="center"
-        component="h1"
-        variant="h4"
-      >
-        Checkout
-      </WithStyles(ForwardRef(Typography))>
-      <WithStyles(ForwardRef(Stepper))
-        activeStep={0}
-        className="makeStyles-stepper-4"
-      >
-        <WithStyles(ForwardRef(Step))
-          key="Shipping address"
-        >
-          <WithStyles(ForwardRef(StepLabel))>
-            Shipping address
-          </WithStyles(ForwardRef(StepLabel))>
-        </WithStyles(ForwardRef(Step))>
-        <WithStyles(ForwardRef(Step))
-          key="Payment details"
-        >
-          <WithStyles(ForwardRef(StepLabel))>
-            Payment details
-          </WithStyles(ForwardRef(StepLabel))>
-        </WithStyles(ForwardRef(Step))>
-        <WithStyles(ForwardRef(Step))
-          key="Review your order"
-        >
-          <WithStyles(ForwardRef(StepLabel))>
-            Review your order
-          </WithStyles(ForwardRef(StepLabel))>
-        </WithStyles(ForwardRef(Step))>
-      </WithStyles(ForwardRef(Stepper))>
-      <AddressForm />
-      <div
-        className="makeStyles-buttons-5"
-      >
-        <WithStyles(ForwardRef(Button))
-          className="makeStyles-button-6"
-          color="primary"
-          onClick={[Function]}
-          variant="contained"
-        >
-          Next
-        </WithStyles(ForwardRef(Button))>
-      </div>
+      <StepForm />
     </WithStyles(ForwardRef(Paper))>
   </main>
 </Fragment>
