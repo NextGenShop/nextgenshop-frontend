@@ -303,14 +303,16 @@ export function ArtificialCashier({
       <audio ref={audioRef}>
         Your browser does not support the <code>audio</code> element.
       </audio>
-      <div className={classes.inner}>
+      <div className={classes.inner} style={{height: "100%"}}>
         {loaded ? (
           <React.Fragment>
             <model-viewer
               autoplay
               loading="eager"
               animation-name={responding ? "Talking" : "Idle"}
-              style={{ width: "350px", height: "350px" }}
+              style={{ width: "550px", height: "100%" }}
+              camera-orbit="0deg 90deg 1m"
+              camera-target="0 50cm 140cm"
               src={AvatarV2Model}
             ></model-viewer>
             {responseText.trim().length > 0 && (
