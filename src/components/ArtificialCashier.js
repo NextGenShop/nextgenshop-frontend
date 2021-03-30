@@ -22,6 +22,7 @@ import {
 import { addBasketItem } from "../utils/basketUtils";
 // import AvatarModel from '../assets/models/Avatar.glb';
 import AvatarV2Model from "../assets/models/AvatarV2.glb";
+import AvatarBackground from "../assets/images/cashierBackground.jpg";
 import { displayToast } from "../utils/displayToast";
 
 const useStyles = makeStyles((theme) => ({
@@ -295,7 +296,10 @@ export function ArtificialCashier({
   );
 
   return (
-    <Paper className={classes.paper}>
+    <Paper
+      className={classes.paper}
+      style={{ backgroundImage: `url(${AvatarBackground})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+    >
       <audio ref={audioRef}>
         Your browser does not support the <code>audio</code> element.
       </audio>
